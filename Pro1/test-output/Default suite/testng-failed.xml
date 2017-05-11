@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="analyticsLive.GARun">
+        <methods>
+          <include name="Browserinvoke"/>
+          <include name="caOTFilerCheck"/>
+          <include name="quit"/>
+          <include name="ccDWFilerCheck"/>
+          <include name="dOMFilerCheck"/>
+          <include name="gcDWFilerCheck"/>
+          <include name="dDWFilerCheck"/>
+          <include name="tearDown"/>
+          <include name="gcOMFilerCheck"/>
+          <include name="ccOMFilerCheck"/>
+          <include name="nsDWFilerCheck"/>
+          <include name="grsSDWFilerCheck"/>
+          <include name="nsOMFilerCheck"/>
+          <include name="gmOTFilerCheck"/>
+          <include name="gmDWFilerCheck"/>
+          <include name="grsSOMFilerCheck"/>
+          <include name="gcDPFilerCheck"/>
+          <include name="gmDPFilerCheck"/>
+          <include name="nsDPFilerCheck"/>
+          <include name="gmOMFilerCheck"/>
+          <include name="netSalesFilterDataCheck"/>
+          <include name="caTSFilerCheck"/>
+          <include name="grsSDPFilerCheck"/>
+          <include name="ccDPFilerCheck"/>
+          <include name="L2_checkCountNavigator"/>
+        </methods>
+      </class> <!-- analyticsLive.GARun -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
