@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="selenium-server-standalone-3.0.1.jar"/>
+	<classpathentry kind="lib" path="extentreports-2.41.2.jar"/>
+	<classpathentry kind="lib" path="freemarker-2.3.25-incubating.jar"/>
+	<classpathentry kind="lib" path="testng-6.9.4.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/poi-3.16.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/poi-examples-3.16.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/poi-excelant-3.16.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/poi-ooxml-3.16.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/poi-ooxml-schemas-3.16.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/poi-scratchpad-3.16.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/poilib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/javax.mail-1.3.3.01.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/activation.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/java-mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/javamail-connector-4.0-sources.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/javamail-smtp-1.4.2.jar"/>
+	<classpathentry kind="lib" path="E:/SeleniumWorkspace/ws1/Pro1/pop3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
