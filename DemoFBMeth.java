@@ -237,7 +237,7 @@ public class DemoFBMeth {
 		   login(un,pass);
 		   logger=report.startTest("L1_Dashboard");
 		   long start_m = System.currentTimeMillis();
-		   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		   long start = TimeUnitsd.MILLISECONDS.toSeconds(start_m);
 		   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		   try 
 		   {
