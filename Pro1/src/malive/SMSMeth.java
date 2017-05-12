@@ -66,7 +66,7 @@ public class SMSMeth
 	public void Browserinvoke(String repName)
 	{
 		
-		report=new ExtentReports("E:/SeleniumWorkspace/ws1/Pro1/report/"+repName+".html",true);
+		report=new ExtentReports("E:/SeleniumReport/"+repName+".html",true);
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);

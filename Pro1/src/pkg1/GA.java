@@ -36,7 +36,7 @@ public class GA {
 	//public String password = "SQj0Kp3Hez";
 	public String Username = "serveradmin";
 	public String password = "mP2$Kx_uz@NH";
-	public static String SNAPLOC = "E:/SeleniumWorkspace/ws1/Pro1/snap/";
+	public static String SNAPLOC = "E:/SeleniumSnaps/";
 	
 	 //public String Username = "fbjambaadmin";
 	 //public String password = "SQj0Kp3Hez";
@@ -55,7 +55,7 @@ public class GA {
 	// public String Reportpath =
 	// "D:\\Report\\Test_Report_".concat(Reportname).concat(timetaken).concat(".html");
 
-	public String Reportpath = "E:/SeleniumWorkspace/ws1/Pro1/rep/Test_Report_" + timestamp() + ".html";
+	public String Reportpath = "E:/SeleniumReport/Test_Report_" + timestamp() + ".html";
 
 	 
 	// public String AppUrl =
@@ -978,19 +978,9 @@ driver.manage().window().maximize();*/
 
 		report.endTest(logger);
 		report.flush();
-		// driver.get("C:\\Report\\Test_Report.html");
 	}
 
-/*	public void getscreenshot(String name) throws Exception {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		// The below method will save the screen shot in d drive with name
-		// "screenshot.png"
-		String dest = "C:\\Users\\Janak Tomar\\workspace\\GA\\Snapshots\\" + name + ".png";
-		FileUtils.copyFile(scrFile, new File(dest));
-		// System.out.println("Screenshot taken");
 
-	}
-*/
 	public static String timestamp() {
 		String dt = DateFormat.getDateTimeInstance().format(new Date());
 		dt = dt.replaceAll(":", "_");
@@ -1037,7 +1027,7 @@ driver.manage().window().maximize();*/
 		  File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		  // The below method will save the screen shot in d drive with name
 		  // "screenshot.png"
-		  String dest = "E:/SeleniumWorkspace/ws1/Pro1/snap/" + name+".png";
+		  String dest = "E:/SeleniumSnaps/" + name+".png";
 		  FileUtils.copyFile(scrFile, new File(dest));
 		  // System.out.println("Screenshot taken");
 

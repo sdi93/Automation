@@ -30,7 +30,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import malive.ReadExcelFile;
 
-public class Method
+public class EUPMethod
 {
 	ExtentReports report;
 	ExtentTest logger;
@@ -70,7 +70,7 @@ public class Method
 	{
 		
 		date = date();
-		initialSNAPLOC = "E:/SeleniumWorkspace/ws1/Pro1/report/"+repName+date;
+		initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
 	
 		dir1 = new File(initialSNAPLOC);
 		SNAPLOC = initialSNAPLOC+"/";

@@ -56,13 +56,6 @@ public class DemoFBMeth {
 	public String L1_L7_TD="//*[@class='guestCount']/child::*/*//*/h4";
 	public String L1_L10_TD = "//*[@class='salesPerGuest']/child::*/*//*/h4";
 	
-	
-	//public String L1_L4_TD="//*[@id='customerMix']/child::*/*//*/*//*/th[2]";
-	//public String L1_L5_TD="//*[@id='itemSales']/child::*/*//*/*//*/*/th[2]";
-	//public String L1_L7_TD="//*[@id='TopStoreBySale']/child::*/*//*/*//th[2]";
-	//public String L1_L8_TD="//*[@id='campaign']/child::*//*/th[2]";
-	
-	
 	public String L1_exportPDF_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@ng-click='exportToPDF()']";
 	public String L1_mailTo_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@ng-click='mailTO()']";
 	public String L1_dashboard_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@id='saveWidgetListItem']";
@@ -192,31 +185,13 @@ public class DemoFBMeth {
 	public String L3_kpi_element1="//td[@class='pvtAxisContainer pvtUnused pvtVertList ui-sortable']/div[3]/div/p[1]/label/span";
 	public String L3_Kpi_ok_button="//td[@class='pvtAxisContainer pvtUnused pvtVertList ui-sortable']/div[3]/p[2]/button";
 	
-	public String L1_sma_t1 = "//li[1]/child::*//*[@id='ageRangeChart']";
-	public String L1_sma_t2 = "//li[2]/child::*//*[contains(text(),'Male')]";
-	public String L1_sma_t3 = "//li[3]/child::*//*[contains(text(),'25K')]";
-	public String L1_sma_t4 = "//li[4]/child::*//*[contains(@class,'img-responsive')]";
-	public String L1_sma_t5 = "//li[5]/child::*//*[contains(@id,'occupationChart')]";
-	public String L1_sma_t6 = "//li[6]/child::*//*[contains(@id,'educationPieChart')]";
-	public String L1_sma_t7 = "//li[7]/child::*//*[contains(@id,'prmEthnicityContainer')]";
-	public String L1_sma_t8 = "//li[8]/child::*//*[contains(@class,'img-responsive')]";
-	public String L1_sma_t9 = "//li[9]/child::*//*[contains(@class,'dark')]"; //can also use this     //li[9]/child::*//*[contains(text(),'High Likelyhood')]
-	public String L1_sma_t10 = "//li[10]/child::*//*[contains(@class,'dark')]";
-	public String L1_sma_t11 = "//li[11]/child::*//*[contains(@class,'dark')]";
-	public String L1_sma_t12 = "//li[12]/child::*//*[contains(@class,'dark')]";
-	public String L1_sma_t13 = "//li[13]/child::*//*[@id='avgCheckChart']";
-	public String L1_sma_t14 = "//li[14]/child::*//*[@id='personaPieChart']";
-	public String L1_sma_t15 = "//li[15]/child::*//*[@id='emailOpenRateChart']";
-	public String L1_sma_t16 = "//li[16]/child::*//*[@id='emailRedemptionRateChart']";
-	
-	
 	File dir1;
 	String date =null;
 	String reportName;
 	public void Browserinvoke(String url,String repName)
 	{
 		date = date();
-		initialSNAPLOC = "E:/SeleniumWorkspace/ws1/Pro1/report/"+repName+date;
+		initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
 		reportName = repName;
 		dir1 = new File(initialSNAPLOC);
 		SNAPLOC = initialSNAPLOC+"/";
@@ -699,7 +674,6 @@ public class DemoFBMeth {
 			return true;
 		}
 
-
 		public boolean L2_DropDownPeriod(String typel2) throws Exception{
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
@@ -775,7 +749,6 @@ public class DemoFBMeth {
 			return true;
 		}
 
-				
 		public boolean dropdown_filter_check() throws Exception{
 			int i;
 			int[] arg=new int[]{};
@@ -1014,6 +987,7 @@ public class DemoFBMeth {
 			}
 			return true;
 		}
+		
 		public boolean backToL1Click()throws Exception{
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);

@@ -15,9 +15,9 @@ public class GARun
 	public String password = "mP2$Kx_uz@NH";
 	//public String Username = "fbjambaadmin";
 	//public String password = "SQj0Kp3Hez";
-	public String AppUrl ="https://blaze.fishbowlcloud.com/#/insights/cockpit/";
+	public String AppUrl ="https://test.fishbowlcloud.com/#/insights/cockpit/";
 	GAMeth obj=new GAMeth();
-	public String reportName ="blaze";
+	public String reportName ="test";
 	
 	 @BeforeTest
 		public void Browserinvoke()

@@ -223,8 +223,9 @@ public class GAMeth {
 	public void Browserinvoke(String url,String repName)
 	{
 		date = date();
-		initialSNAPLOC = "E:/SeleniumWorkspace/ws1/Pro1/report/"+repName+date;
+		initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
 		reportName = repName;
+
 		dir1 = new File(initialSNAPLOC);
 		SNAPLOC = initialSNAPLOC+"/";
 		dir1.mkdir();

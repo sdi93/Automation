@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
 
 import analyticsLive.GAMeth;
 
-public class CRMRun {
-	public String reportName ="Seaisland";
-	Method obj=new Method();
+public class EUPRun {
+	public String reportName ="EupTest";
+	EUPMethod obj=new EUPMethod();
 	
 	 @BeforeTest
 		public void Browserinvoke()
