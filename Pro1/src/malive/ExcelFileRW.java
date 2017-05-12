@@ -1,4 +1,4 @@
-package  malive;
+package malive;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,10 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-
-public class ReadExcelFile {
-
+public class ExcelFileRW {
 	public static List<String> readExcel(String filePath, String fileName, String sheetName) throws IOException {
 
 		List<String> list = new ArrayList<String>();
