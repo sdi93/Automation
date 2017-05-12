@@ -72,7 +72,8 @@ public class SMSMeth
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		try
 		{
-			list = ReadExcelFile.readExcel(filePath, "ExportExcel.xlsx", "SMSBroadcast");
+			ExcelFileRW read = new ExcelFileRW();
+			list = read.readExcel(filePath, "ExportExcel.xlsx", "SMSBroadcast");
 			url = list.get(0);
 			username = list.get(1);
 			password = list.get(2);
@@ -180,7 +181,7 @@ public class SMSMeth
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_dropdown)));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_textbox)));
 			driver.findElement(By.xpath(defCamp_textbox)).sendKeys(smstext);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_textbox)));
+		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_textbox)));
 			driver.findElement(By.xpath(button_saveNext)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Audience Criteria')]")));
 		}
@@ -202,7 +203,7 @@ public class SMSMeth
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(radiobtn_store)));
 			driver.findElement(By.xpath(radiobtn_store)).click();
-			driver.findElement(By.xpath(button_saveContinue)).click();
+			driver.findElement(By.xpath(button_saveNext)).click();
 		}
 		catch(Exception e)
 		{
@@ -221,7 +222,7 @@ public class SMSMeth
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(radiobtn_ExtSegment)));
 			driver.findElement(By.xpath(radiobtn_ExtSegment)).click();
-			driver.findElement(By.xpath(button_saveContinue)).click();
+			driver.findElement(By.xpath(button_saveNext)).click();
 		}
 		catch(Exception e)
 		{

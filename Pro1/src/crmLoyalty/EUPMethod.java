@@ -23,12 +23,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
-import malive.ReadExcelFile;
+import malive.ExcelFileRW;
 
 public class EUPMethod
 {
@@ -83,7 +81,7 @@ public class EUPMethod
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		try
 		{
-			list = ReadExcelFile.readExcel(filePath, "ExportExcel.xlsx", "LoyaltyFields");
+			list = ExcelFileRW.readExcel(filePath, "ExportExcel.xlsx", "LoyaltyFields");
 			url = list.get(0);
 			 fname = list.get(1);
 			 lname = list.get(2);
@@ -224,7 +222,7 @@ public class EUPMethod
 						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div[1]/div[2]/input")).sendKeys(newEmail);//textBox
 						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div[2]/div[2]/input")).clear();
 						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div[2]/div[2]/input")).sendKeys(newEmail);//textbox of conirm
-						ReadExcelFile.writeExcel(filePath, "ExportExcel.xlsx", "LoyaltyFields",1,5,newEmail);
+						ExcelFileRW.writeExcel(filePath, "ExportExcel.xlsx", "LoyaltyFields",1,5,newEmail);
 					}
 					else if (StringUtils.containsIgnoreCase(text, "Password"))
 					{
@@ -371,7 +369,7 @@ public class EUPMethod
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(confPassword_textbox)));
 			driver.findElement(By.xpath(confPassword_textbox)).clear();
 			driver.findElement(By.xpath(confPassword_textbox)).sendKeys(newPass);
-			ReadExcelFile.writeExcel(filePath, "ExportExcel.xlsx", "LoyaltyFields",1,6,newPass);
+			ExcelFileRW.writeExcel(filePath, "ExportExcel.xlsx", "LoyaltyFields",1,6,newPass);
 			driver.findElement(By.xpath(submitButton_password)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(success_dialog)));
 			driver.findElement(By.xpath(success_dialog));

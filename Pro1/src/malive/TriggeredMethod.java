@@ -16,8 +16,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 
-import crmLoyalty.ReadingExcel;
-
 public class TriggeredMethod 
 {
 	ExtentReports report;
@@ -71,8 +69,8 @@ public class TriggeredMethod
 		try
 		{
 			String filePath = "C:/Users/schaudhary_ic/Desktop";
-			ReadingExcel read = new ReadingExcel();
-			list = read.readfile(filePath, "ExportExcel.xlsx", "Acquisition");
+			ExcelFileRW read = new ExcelFileRW();
+			list = read.readExcel(filePath, "ExportExcel.xlsx", "Acquisition");
 			selectAll = Keys.chord(Keys.CONTROL, "a");
 			url = list.get(0);
 			username = list.get(1);

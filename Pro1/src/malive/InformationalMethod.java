@@ -80,7 +80,7 @@ public class InformationalMethod
 		try
 		{
 			String filePath = "C:/Users/schaudhary_ic/Desktop";
-			ReadExcelFile read = new ReadExcelFile();
+			ExcelFileRW read = new ExcelFileRW();
 			list = read.readExcel(filePath, "ExportExcel.xlsx", "TestSheet");
 			url = list.get(0);
 			username = list.get(1);

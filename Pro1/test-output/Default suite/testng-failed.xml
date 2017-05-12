@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="malive.SMSBroadcastStore">
+      <class name="malive.InformationalRun">
         <methods>
-          <include name="storeSelection"/>
+          <include name="definingResponse"/>
           <include name="Browserinvoke"/>
+          <include name="dshboardView"/>
         </methods>
-      </class> <!-- malive.SMSBroadcastStore -->
+      </class> <!-- malive.InformationalRun -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

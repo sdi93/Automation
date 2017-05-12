@@ -17,8 +17,6 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-import crmLoyalty.ReadingExcel;
-
 public class AcquisitionMethod 
 	{
 		ExtentReports report;
@@ -82,8 +80,8 @@ public class AcquisitionMethod
 			try
 			{
 				String filePath = "C:/Users/schaudhary_ic/Desktop";
-				ReadingExcel read = new ReadingExcel();
-				list = read.readfile(filePath, "ExportExcel.xlsx", "Acquisition");
+				ExcelFileRW read = new ExcelFileRW();
+				list = read.readExcel(filePath, "ExportExcel.xlsx", "Acquisition");
 				selectAll = Keys.chord(Keys.CONTROL, "a");
 				url = list.get(0);
 				username = list.get(1);
