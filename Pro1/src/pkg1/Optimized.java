@@ -34,10 +34,10 @@ public class Optimized {
 	static ExtentTest logger;
 	public static WebDriver driver;
 
-	//public String Username = "fbjambaadmin";
-	//public String password = "SQj0Kp3Hez";
-	public String Username = "serveradmin";
-	public String password = "mP2$Kx_uz@NH";
+	public String Username = "schaudhary_ic";
+	public String password = "Schaudhary123";
+	//public String Username = "serveradmin";
+	//public String password = "mP2$Kx_uz@NH";
 	public static String SNAPLOC = "E:/SeleniumSnaps/";
 	
 	 //public String Username = "fbjambaadmin";
@@ -46,7 +46,7 @@ public class Optimized {
 	 //public String AppUrl ="https://olga.fishbowlcloud.com/#/insights/cockpit/";
 	//public String AppUrl = "https://cornerbakerycafe.fishbowlcloud.com/#/insights/cockpit/";
 	//public String AppUrl ="https://tp.fishbowlcloud.com/#/insights/cockpit/";
-	public String AppUrl ="https://txrh.fishbowlcloud.com/#/insights/cockpit/";
+	public String AppUrl ="https://peiwei.fishbowlcloud.com/#/insights/cockpit/";
 
 	String Reportname = AppUrl.substring(8);
 

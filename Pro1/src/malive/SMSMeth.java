@@ -1,5 +1,10 @@
 package malive;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +22,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+
+import analyticsLive.NewEmail;
 
 public class SMSMeth 
 {
@@ -63,10 +70,25 @@ public class SMSMeth
 	public String L1_L7 = "//*[@id='TopStoreBySale']/child::*//tbody/tr[1]/td[2]";
 	public String L1_L8 = "//*[@id='campaign']/child::*//tbody/tr[1]/td[2]";
 	
+	
+	File dir1;
+	String reportName;
+	
+	String date =null;
+	public static String initialSNAPLOC ;
+	public static String SNAPLOC ;
 	public void Browserinvoke(String repName)
 	{
+		date = date();
+		initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
+		reportName = repName;
+
+		dir1 = new File(initialSNAPLOC);
+		SNAPLOC = initialSNAPLOC+"/";
+		dir1.mkdir();
 		
-		report=new ExtentReports("E:/SeleniumReport/"+repName+".html",true);
+		report=new ExtentReports(SNAPLOC+"/"+repName+".html",true);
+		
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
@@ -104,7 +126,7 @@ public class SMSMeth
 	
 	public boolean L1_dashboardView() throws Exception
 	   {
-		   
+		logger=report.startTest("L1_Dashboard");
 		   long start_m = System.currentTimeMillis();
 		   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
@@ -112,17 +134,19 @@ public class SMSMeth
 		   {
 			   login();
 			   verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
-			   
+			   logger.log(LogStatus.PASS, "Data Loaded successfully on L1");
 		   } 
 		   catch (Exception e)
 		   { 
+			   logger.log(LogStatus.FAIL, "Data not loaded in all tiles for L1");
 			   return false;
 		   }
 		   return true;
 	   }
 	
 	public boolean campaignNaivation()
-	{
+	{		
+			logger=report.startTest("Campaign Navigation");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -132,10 +156,12 @@ public class SMSMeth
 					driver.get(createcampaign);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(button_createCampaign)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Campaigns & Offers')]")));
+					 logger.log(LogStatus.PASS, "Navigation to campaign page successful");
 			   } 
 			   catch (Exception e)
 			   { 
 				   System.out.println(e);
+				   logger.log(LogStatus.FAIL, "Navigation to campaign page failed");
 				   return false;
 			   }
 			return true;
@@ -143,6 +169,7 @@ public class SMSMeth
 	
 	public boolean campaignCreation()
 	{
+		logger=report.startTest("Campaign Creation");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -162,9 +189,12 @@ public class SMSMeth
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(textbox_campName)));
 			driver.findElement(By.xpath(button_continue)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Define Campaign & Offer')]")));
+			logger.log(LogStatus.PASS, "New campaign created Successfully");
+
 		}
 		catch(Exception e)
 		{
+			logger.log(LogStatus.FAIL, "New campaign creation failed");
 			return false;
 		}
 		return true;
@@ -172,6 +202,7 @@ public class SMSMeth
 	
 	public boolean defineCmapaign()
 	{
+		logger=report.startTest("Defining Campaign");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -184,10 +215,12 @@ public class SMSMeth
 		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_textbox)));
 			driver.findElement(By.xpath(button_saveNext)).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Audience Criteria')]")));
+			logger.log(LogStatus.PASS, "Campaign definition complete");
 		}
 		catch(Exception e)
 		{
-			
+			logger.log(LogStatus.FAIL, "Campaign definition failed");
+			return false;
 
 		}
 		return true;
@@ -195,6 +228,7 @@ public class SMSMeth
 	
 	public boolean audienceCriteriaStore()
 	{
+		logger=report.startTest("Selecting Audience");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -204,11 +238,13 @@ public class SMSMeth
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(radiobtn_store)));
 			driver.findElement(By.xpath(radiobtn_store)).click();
 			driver.findElement(By.xpath(button_saveNext)).click();
+			logger.log(LogStatus.PASS, "Audience selection complete");
+
 		}
 		catch(Exception e)
 		{
-			
-
+			logger.log(LogStatus.FAIL, "Audience selection failed");
+			return false;
 		}
 		return true;
 	}
@@ -259,6 +295,7 @@ public class SMSMeth
 	
 	public boolean storeSlection()
 	{
+		logger=report.startTest("Selecting Store");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -273,10 +310,12 @@ public class SMSMeth
 		//driver.findElement(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]"));
 		driver.findElement(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]")).click();
 		driver.findElement(By.xpath(button_saveNext)).click();
+		logger.log(LogStatus.PASS, "Store selection complete");
+
 			}
 		catch(Exception e)
 		{
-			
+			logger.log(LogStatus.FAIL, "Store selection failed");
 			return false;
 		}
 		return true;
@@ -284,6 +323,7 @@ public class SMSMeth
 	
 	public boolean snedingSchedule()
 	{
+		logger=report.startTest("Sending Schedule");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -293,17 +333,19 @@ public class SMSMeth
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sendNow_radiobtn)));
 			driver.findElement(By.xpath(sendNow_radiobtn)).click();
 			driver.findElement(By.xpath(button_saveNext)).click();
+			logger.log(LogStatus.PASS, "Sending schedule set to send now complete");
 		}
 		catch(Exception e)
 		{
-			
-
+			logger.log(LogStatus.FAIL, "Sending schedule set to send now failed");
+			return false;
 		}
 		return true;
 	}
 	
 	public boolean databaseTest()
 	{
+		logger=report.startTest("Database Status");
 		try
 		{
 			String query = "SELECT CampaignStatus FROM Acme.Campaign WHERE NAME ='"+campaignname+"' LIMIT 1";
@@ -315,12 +357,18 @@ public class SMSMeth
 					System.out.println(reschk);
 					break;
 				}
+				else if(i ==4 && reschk!=4)
+				{
+					logger.log(LogStatus.FAIL, "SMS broadcast did not reached customer");
+					return false;
+				}
 				Thread.sleep(30000);
 			}
+			logger.log(LogStatus.PASS, "SMS broadcast reached customer");
 		}
 		catch(Exception e){} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(LogStatus.FAIL, "SMS broadcast did not reached customer");
+			return false;
 		}
 		return true;
 	}
@@ -328,6 +376,7 @@ public class SMSMeth
 	
 	public boolean publishigBroadcast()
 	{
+		logger=report.startTest("Publishing Broadcast");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -337,11 +386,12 @@ public class SMSMeth
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(publish_button)));
 			driver.findElement(By.xpath(publish_button)).click();
 		//	driver.findElement(By.xpath(button_saveNext)).click();
+			logger.log(LogStatus.PASS, "SMS broadcast published");
 		}
 		catch(Exception e)
 		{
-			
-
+			logger.log(LogStatus.FAIL, "SMS broadcast publish failed");
+			return false;
 		}
 		return true;
 	}
@@ -369,5 +419,29 @@ public class SMSMeth
 		  actions.moveToElement(subElement);
 		  actions.click().build().perform();
 		 }
+	
+
+	public void quit()
+	{
+		driver.close();
+		driver.quit();
+		
+	}
+	
+	public void reportFlush(){
+		report.endTest(logger);
+		report.flush();
+	}
+	
+	public String  date()
+	{
+		final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+	
+	    LocalDate localDate = LocalDate.now();
+        System.out.println(DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate));
+		String datee = DateTimeFormatter.ofPattern("dd").format(localDate);
+		return datee;
+	}
 	
 }

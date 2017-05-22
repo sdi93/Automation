@@ -11,13 +11,13 @@ import org.testng.annotations.Test;
 public class GARun 
 {
 
-	public String Username = "serveradmin";
-	public String password = "mP2$Kx_uz@NH";
-	//public String Username = "fbjambaadmin";
-	//public String password = "SQj0Kp3Hez";
-	public String AppUrl ="https://test.fishbowlcloud.com/#/insights/cockpit/";
+	public String Username = "schaudhary_ic";
+	public String password = "Schaudhary123";
+	// public String Username = "fbjambaadmin";
+	// public String password = "SQj0Kp3Hez";
+	public String AppUrl ="https://cornerbakerycafe.fishbowlcloud.com/#/insights/cockpit/";
 	GAMeth obj=new GAMeth();
-	public String reportName ="test";
+	public String reportName ="cornerbakerycafe";
 	
 	 @BeforeTest
 		public void Browserinvoke()
@@ -77,6 +77,8 @@ public class GARun
 	 @Test(priority=8)
 	 public void L2_netSalesNavigator()throws Exception{
 		 boolean a = obj.L2_graphNavigator("netsales","L1_netsales","netSales");
+		 //netsalesHover,checkaverageHover,guestmixHover
+		 //L1_netsales_navgraphHover,L1_checkaverage_navgraphHover,L1_guestmix_navgraphHover
 	     Assert.assertEquals(a, true);
 	 }
 	 
@@ -859,13 +861,13 @@ public class GARun
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
 	 }
-	 
+	/* 
 	 @Test(priority=16)
 	 public void nsGetFilter2Type()throws Exception{
 		 boolean a =  obj.ddFilterNumberCheck();
 		 Assert.assertEquals(a, true);
 	 }
-	 
+	 */
 	@Test(priority=138)
 	 public void L3_ItemSales()throws Exception {
 		 boolean a = obj.L3_hoverNavigator("itemsalesHover","L1_itemsales_arrow");
@@ -919,7 +921,7 @@ public class GARun
 		 Assert.assertEquals(a,true);
 	 }
 	
-/*	@Test(priority=147)
+	/*@Test(priority=147)
 	 public void L3_covercount1()throws Exception {
 		 boolean a = obj.L3_covercount(1);
 		 Assert.assertEquals(a,true);
@@ -1005,7 +1007,7 @@ public class GARun
 	 }*/
 	@Test(priority=156)
 	 public void L3_clusterSpendNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/spend");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/spend","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=157)
@@ -1014,15 +1016,15 @@ public class GARun
 		 Assert.assertEquals(a, true);
 	 }
 	
-	@Test(priority=158)
+	/*@Test(priority=158)
 	 public void clusterSpendBack()throws Exception {
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
-	 }
+	 }*/
 	
 	@Test(priority=159)
 	 public void L3_clusterFrequencyNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/frequency");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/frequency","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=160)
@@ -1031,15 +1033,15 @@ public class GARun
 		 Assert.assertEquals(a, true);
 	 }
 	
-	@Test(priority=161)
+	/*@Test(priority=161)
 	 public void clusterFrequencyBack()throws Exception {
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
-	 }
+	 }*/
 	
 	@Test(priority=162)
 	 public void L3_clusterVolumeNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/volume");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/volume","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=163)
@@ -1048,15 +1050,15 @@ public class GARun
 		 Assert.assertEquals(a, true);
 	 }
 	
-	@Test(priority=164)
+	/*@Test(priority=164)
 	 public void clusterVolumeBack()throws Exception {
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
-	 }
+	 }*/
 	
 	@Test(priority=165)
 	 public void L3_clusterRecencyNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/recency");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"clusters/recency","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=166)
@@ -1065,15 +1067,15 @@ public class GARun
 		 Assert.assertEquals(a, true);
 	 }
 	
-	@Test(priority=167)
+	/*@Test(priority=167)
 	 public void clusterRecencyBack()throws Exception {
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
-	 }
+	 }*/
 	
 	@Test(priority=168)
 	 public void L3_PersonaNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"persona");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"persona","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=169)
@@ -1082,15 +1084,15 @@ public class GARun
 		 Assert.assertEquals(a, true);
 	 }
 	
-	@Test(priority=170)
+	/*@Test(priority=170)
 	 public void PersonaBack()throws Exception {
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
-	 }
+	 }*/
 	
 	@Test(priority=171)
 	 public void L3_PromotionNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"promotion");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"promotion","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=172)
@@ -1099,15 +1101,15 @@ public class GARun
 		 Assert.assertEquals(a, true);
 	 }
 	
-	@Test(priority=173)
+	/*@Test(priority=173)
 	 public void PromotionBack()throws Exception {
 		 boolean a = obj.backToL1Click();
 		 Assert.assertEquals(a,true);
-	 }
+	 }*/
 	
 	@Test(priority=174)
 	 public void L3_LoyaltyNavigator()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"loyalty");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"loyalty","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=175)
@@ -1115,6 +1117,7 @@ public class GARun
 		 boolean a = obj.dropdown_filter_check();
 		 Assert.assertEquals(a, true);
 	 }
+	
 	@Test(priority=176)
 	public void L1_SMA() throws Exception{
 		boolean a = obj.L1_SMA(AppUrl ,"SMA");
@@ -1123,7 +1126,7 @@ public class GARun
 	
 	@Test(priority=177)
 	 public void L3_SMSDetails()throws Exception{
-		 boolean a = obj.L3_UrlNavigator(AppUrl,"SMADetails");
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"SMADetails","no");
 		  Assert.assertEquals(a, true);
 	 }
 	@Test(priority=178)
@@ -1131,6 +1134,7 @@ public class GARun
 		 boolean a = obj.dropdown_filter_check();
 		 Assert.assertEquals(a, true);
 	 }
+	
 	/*@Test(priority=173)
 	 public void LoyaltyBack()throws Exception {
 		 boolean a = obj.backToL1Click();

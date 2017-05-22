@@ -9,11 +9,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class MyCustomGARun {
-	 public String Username = "fbjambaadmin";
-	 public String password = "SQj0Kp3Hez";
-	public String AppUrl ="https://demo-fb.fishbowlcloud.com/#/insights/cockpit/";
-	DemoFBMeth obj=new DemoFBMeth();
-	public String reportName ="demo-fb";
+	public String Username = "serveradmin";
+	public String password = "password";
+	//public String Username = "fbjambaadmin";
+	//public String password = "SQj0Kp3Hez";
+	public String AppUrl ="https://qa-jamba.fishbowlcloud.com/#/insights/cockpit/";
+	GAMeth obj=new GAMeth();
+	public String reportName ="qa-jamba";
 	
 	 @BeforeTest
 		public void Browserinvoke()
@@ -42,9 +44,9 @@ public class MyCustomGARun {
 	obj.reportFlush();
 		
 	}
-	 @org.testng.annotations.AfterSuite
+	/* @org.testng.annotations.AfterSuite
 		public void quit() {
 			obj.quit();
-		}
+		}*/
 	 
 }

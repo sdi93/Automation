@@ -1,12 +1,16 @@
 package malive;
 
+import java.io.IOException;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class SMSBroadcastStore {
 	SMSMeth obj=new SMSMeth();
-	String reportName =  "SMSreport";
+	String reportName =  "SMSBroadcastStore";
 	
 	@BeforeTest
 	public void Browserinvoke()
@@ -67,5 +71,19 @@ public class SMSBroadcastStore {
 		 boolean a = obj.databaseTest();
 		  Assert.assertEquals(a, true);
 	 }
+	 
+	 @AfterMethod
+		public void tearDown(ITestResult result) throws IOException {
+
+			if (result.getStatus() == ITestResult.FAILURE) {
+			}
+
+		obj.reportFlush();
+			
+		}
+		 @org.testng.annotations.AfterSuite
+			public void quit() {
+				obj.quit();
+			}
 	 
 }

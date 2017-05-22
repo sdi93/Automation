@@ -1,6 +1,10 @@
 package malive;
 
+import java.io.IOException;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -64,4 +68,23 @@ public class InformationalRun {
 		 boolean a = obj.scheduling();
 		  Assert.assertEquals(a, true);
 	 }
+	 @Test(priority=8)
+	 public void publishing() throws Exception{
+		 boolean a = obj.publishigAcquisition();
+		  Assert.assertEquals(a, true);
+	 }
+	 
+	 @AfterMethod
+		public void tearDown(ITestResult result) throws IOException {
+
+			if (result.getStatus() == ITestResult.FAILURE) {
+			}
+
+		obj.reportFlush();
+			
+		}
+		 @org.testng.annotations.AfterSuite
+			public void quit() {
+				obj.quit();
+			}
 }

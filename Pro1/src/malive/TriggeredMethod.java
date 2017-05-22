@@ -39,6 +39,14 @@ public class TriggeredMethod
 	public String textbox_campName = "//*[@ placeholder='Campaign Name']";
 	public String button_continue = "//button[@class='btn btn-primary active']";
 	
+	public String defCamp_textbox ="//*[@id='smsText']";
+	public String defCamp_dropdown = "//input[@aria-label='Choose from saved messages to pre-fill SMS text.']";
+	public String button_saveNext = "//input[@value='Save & Next']";
+	public String radiobtn_store = "//*[contains(text(),'Using Stores')]";
+	public String button_saveContinue  = "//button[contains(.,'Save & Continue')]";
+	public String selectStores_DD = "//div[@class='tree-input']";
+	public String storeSearch_textbox = "//input[@placeholder='Search...']";
+	
 	List<String> list ;
 	String url;
 	String username;
@@ -46,18 +54,11 @@ public class TriggeredMethod
 	String selectAll;
 	String starttime;
 	String campaignname;
-	String CampaignDescription;
-	String Keyword ;
-	String welcomeMessage;
+	String campaignDescription;
 	String PromotionID ;
 	String createcampaign;
 	String store;
-	String extMemeber;
-	String invalidMessage;
-	String todayScheduling;
-	String sendingTime;
-	String confirmMessage;
-	
+		
 	public void Browserinvoke(String repName)
 	{
 		
@@ -70,25 +71,15 @@ public class TriggeredMethod
 		{
 			String filePath = "C:/Users/schaudhary_ic/Desktop";
 			ExcelFileRW read = new ExcelFileRW();
-			list = read.readExcel(filePath, "ExportExcel.xlsx", "Acquisition");
+			list = read.readExcel(filePath, "ExportExcel.xlsx", "Triggered");
 			selectAll = Keys.chord(Keys.CONTROL, "a");
 			url = list.get(0);
 			username = list.get(1);
 			password = list.get(2);
 			createcampaign = list.get(3);
 			campaignname = list.get(4);
-			CampaignDescription = list.get(5);
-			Keyword = list.get(6);
-			welcomeMessage = list.get(7);
-			PromotionID = list.get(8);
-			starttime = list.get(9);
-			extMemeber = list.get(12);
-			invalidMessage =list.get(13);
-			confirmMessage = list.get(14);
-			store = list.get(15);
-			//todayScheduling = list.get(16);
-			//sendingTime = list.get(17);
-			
+			campaignDescription = list.get(6);
+			store = list.get(7);			
 		}
 		catch(Exception e)
 		{
@@ -99,10 +90,8 @@ public class TriggeredMethod
 		driver.manage().window().maximize();
 	}
 	
-	public void login() {
-		// WebDriverWait wait = new WebDriverWait(driver, 180);
-		// driver.manage().timeouts().implicitlyWait(3, TimeUnit.MINUTES);
-		
+	public void login() 
+	{
 		driver.findElement(By.id("login")).clear();
 		driver.findElement(By.id("login")).sendKeys(username);
 		driver.findElement(By.id("pwd")).clear();
@@ -119,8 +108,7 @@ public class TriggeredMethod
 		   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		   try 
 		   {
-			 //  verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
-			   Thread.sleep(10000);
+			  verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
 		   } 
 		   catch (Exception e)
 		   { 		   
@@ -183,6 +171,124 @@ public class TriggeredMethod
 		return true;
 	}
    
+   public boolean defineCmapaign()
+	{
+		long start_m = System.currentTimeMillis();
+		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_dropdown)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_textbox)));
+			driver.findElement(By.xpath(defCamp_textbox)).sendKeys(campaignDescription);
+		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(defCamp_textbox)));
+			driver.findElement(By.xpath(button_saveNext)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Audience Criteria')]")));
+		}
+		catch(Exception e)
+		{			
+			return false;
+		}
+		return true;
+	}
+   
+   public boolean audienceCriteriaStore()
+	{
+		long start_m = System.currentTimeMillis();
+		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		try
+		{
+			Thread.sleep(5000);
+			/*wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Choose Audience Criteria')]")));
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(radiobtn_store)));
+			boolean b =driver.findElement(By.xpath(radiobtn_store)).isDisplayed();
+			System.out.println(b);
+			driver.findElement(By.xpath(radiobtn_store)).click();*/
+			driver.findElement(By.xpath(button_saveContinue)).click();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
+		return true;
+	}
+   
+	public boolean storeSlection()
+	{
+		long start_m = System.currentTimeMillis();
+		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectStores_DD)));
+			driver.findElement(By.xpath(selectStores_DD)).click();
+			driver.findElement(By.xpath(storeSearch_textbox)).sendKeys(store);
+			driver.findElement(By.xpath("//span[@class='expand ng-scope' and @tabindex='0']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]")));
+		//driver.findElement(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]"));
+		driver.findElement(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]")).click();
+		driver.findElement(By.xpath(button_saveNext)).click();
+			}
+		catch(Exception e)
+		{
+			
+			return false;
+		}
+		return true;
+	}
+   
+	public boolean scheduling()
+	{
+		long start_m = System.currentTimeMillis();
+		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='startTime']/input[@id='dy_timer_control']")));
+			driver.findElement(By.xpath("//*[contains(@class,'selectize-input')]")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'BIRTHDAY')]")));
+			driver.findElement(By.xpath("//span[contains(.,'BIRTHDAY')]")).click();
+			driver.findElement(By.xpath("//input[@id='campaign_days']")).sendKeys("1");
+			driver.findElement(By.xpath("//*[@id='startTime']/input[@id='dy_timer_control']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='startTime']/child::*//*//*/*[@class='btn btn-link']")));
+			driver.findElement(By.xpath("//*[@id='startTime']/child::*//*//*/*[@class='btn btn-link']")).click();
+			
+			driver.findElement(By.xpath(button_saveNext)).click();
+			Thread.sleep(10000);
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+		return true;
+	}
+		
+	public boolean publishing()
+	{
+		long start_m = System.currentTimeMillis();
+		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Review and Publish')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Publish']")));
+			driver.findElement(By.xpath("//input[@value='Publish']")).click();
+			
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+		return true;
+	}
+	
    public void verifyelementL1(String xp1, String xp2, String xp3, String xp4, String xp5, String xp6, String xp7,	String xp8) 
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 60);

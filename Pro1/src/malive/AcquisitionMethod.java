@@ -1,5 +1,10 @@
 package malive;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -69,10 +74,26 @@ public class AcquisitionMethod
 		String sendingTime;
 		String confirmMessage;
 		
+
+		File dir1;
+		String reportName;
+		
+		String date =null;
+		public static String initialSNAPLOC ;
+		public static String SNAPLOC ;
+		
 		public void Browserinvoke(String repName)
 		{
 			
-			//report=new ExtentReports("/Users/fishbowl/Desktop/"+repName+".html");
+			date = date();
+			initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
+			reportName = repName;
+
+			dir1 = new File(initialSNAPLOC);
+			SNAPLOC = initialSNAPLOC+"/";
+			dir1.mkdir();
+			
+			report=new ExtentReports(SNAPLOC+"/"+repName+".html",true);
 			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
@@ -124,18 +145,19 @@ public class AcquisitionMethod
 
 		public boolean L1_dashboardView() throws Exception
 		   {
-			   login();
+			   logger=report.startTest("L1_Dashboard");
 			   long start_m = System.currentTimeMillis();
 			   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 			   try 
 			   {
-				 //  verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
-				   Thread.sleep(10000);
+				   login();
+				   verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
+				   logger.log(LogStatus.PASS, "Data Loaded successfully on L1");
 			   } 
 			   catch (Exception e)
 			   { 		   
-				  
+				   logger.log(LogStatus.FAIL, "Data not loaded in all tiles for L1");
 				   return false;
 			   }
 			   return true;
@@ -143,6 +165,7 @@ public class AcquisitionMethod
 	   
 	   public boolean campaignNaivation()
 		{
+		   logger=report.startTest("Campaign Navigation");
 				long start_m = System.currentTimeMillis();
 				long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -152,10 +175,12 @@ public class AcquisitionMethod
 						driver.get(createcampaign);
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(button_createCampaign)));
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Campaigns & Offers')]")));
+						 logger.log(LogStatus.PASS, "Navigation to campaign page successful");
 				   } 
 				   catch (Exception e)
 				   { 
 					   System.out.println(e);
+					   logger.log(LogStatus.FAIL, "Navigation to campaign page failed");
 					   return false;
 				   }
 				return true;
@@ -163,6 +188,7 @@ public class AcquisitionMethod
 	   
 	   public boolean campaignCreation()
 		{
+		   logger=report.startTest("Campaign Creation");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -190,9 +216,11 @@ public class AcquisitionMethod
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(textbox_campName)));
 				driver.findElement(By.xpath(button_continue)).click();
 			//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Define SMS Info Campaign')]")));
+				logger.log(LogStatus.PASS, "New campaign created Successfully");
 			}
 			catch(Exception e)
 			{
+				logger.log(LogStatus.FAIL, "New campaign creation failed");
 					return false;
 			}
 			return true;
@@ -200,6 +228,7 @@ public class AcquisitionMethod
 	   
 	   public boolean defineCmapaign()
 		{
+		   logger=report.startTest("Defining Campaign");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -215,10 +244,11 @@ public class AcquisitionMethod
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")));
 				driver.findElement(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Select a list that members will get subscribed to')]")));
+				logger.log(LogStatus.PASS, "Campaign definition complete");
 			}
 			catch(Exception e)
 			{
-				
+				logger.log(LogStatus.FAIL, "Campaign definition failed");
 					return false;
 			}
 			return true;
@@ -226,21 +256,23 @@ public class AcquisitionMethod
 	   
 	   public boolean subscriptionCriteria()
 		{
+		   logger=report.startTest("Subscription Criteria");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			try
 			{
-				
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[contains(@ng-model,'Lists.selectedOption')]")));
 				driver.findElement(By.xpath("//select[contains(@ng-model,'Lists.selectedOption')]")).click();
 				driver.findElement(By.xpath("//select[contains(@ng-model,'Lists.selectedOption')]")).sendKeys("Trigger list");
 				driver.findElement(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")).click();
 				//driver.findElement(By.xpath(button_saveContinue)).click();
+				logger.log(LogStatus.PASS, "Choosing subscription Criteria complete");
 			}
 			catch(Exception e)
 			{
+				logger.log(LogStatus.FAIL, "Chooosing subscription Criteria failed");
 				return false;
 			}
 			
@@ -249,6 +281,7 @@ public class AcquisitionMethod
 	   
 	   public boolean scheduling()
 		{
+		   logger=report.startTest("Sending Schedule");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -257,10 +290,12 @@ public class AcquisitionMethod
 			{			
 				Thread.sleep(5000);
 				driver.findElement(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")).click();
+				logger.log(LogStatus.PASS, "Sending schedule set");
 			}
 			catch(Exception e)
 			{
 				System.out.println(e);
+				logger.log(LogStatus.FAIL, "Setting sending schedule failed");
 				return false;
 			}
 			return true;
@@ -315,6 +350,7 @@ public class AcquisitionMethod
 	   
 	   public boolean publishig()
 		{
+		   logger=report.startTest("Publishing SMS Acquisition");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -326,10 +362,12 @@ public class AcquisitionMethod
 			//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(publish_button)));
 				//driver.findElement(By.xpath(publish_button)).click();
 			//	driver.findElement(By.xpath(button_saveNext)).click();
+				logger.log(LogStatus.PASS, "SMS acquisition published");
 			}
 			catch(Exception e)
 			{
 				System.out.println(e);
+				logger.log(LogStatus.FAIL, "SMS acquisition publish failed");
 				return false;
 
 			}
@@ -359,4 +397,26 @@ public class AcquisitionMethod
 			  actions.moveToElement(subElement);
 			  actions.click().build().perform();
 			 }
+		public String  date()
+		{
+			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		    final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		
+		    LocalDate localDate = LocalDate.now();
+	        System.out.println(DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate));
+			String datee = DateTimeFormatter.ofPattern("dd").format(localDate);
+			return datee;
+		}
+		
+		public void quit()
+		{
+			driver.close();
+			driver.quit();
+			
+		}
+		
+		public void reportFlush(){
+			report.endTest(logger);
+			report.flush();
+		}
 	}

@@ -1133,7 +1133,7 @@ public class GAMeth {
 			String res = l3_child_type(childNumber);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(res)));
 			driver.findElement(By.xpath(res)).click();	
-			//Thread.sleep(60000);
+			Thread.sleep(20000);
 			boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
 			if (result == true)
 			{
@@ -1181,10 +1181,13 @@ public class GAMeth {
 
 	}
 	
-	public boolean L3_UrlNavigator(String baseUrl,String restUrl) throws Exception{
+	public boolean L3_UrlNavigator(String baseUrl,String restUrl,String child) throws Exception{
 		AppUrl=baseUrl;
 		String completeUrl=AppUrl+restUrl;
+		if (child.equalsIgnoreCase("no"))
+		{
 		logger=report.startTest("Starting test for "+restUrl);
+		}
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);

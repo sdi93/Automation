@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [TestSuite]" parallel="classes">
+  <test name="testGuru(failed)" parallel="classes">
+    <classes>
+      <class name="analyticsLive.MyCustomGARun">
+        <methods>
+          <include name="Browserinvoke"/>
+          <include name="tearDown"/>
+          <include name="L1_storename_dropdown"/>
+        </methods>
+      </class> <!-- analyticsLive.MyCustomGARun -->
+      <class name="malive.MyCustomTestClass">
+        <methods>
+          <include name="createCampaign"/>
+          <include name="CampaignPageNavigation"/>
+        </methods>
+      </class> <!-- malive.MyCustomTestClass -->
+    </classes>
+  </test> <!-- testGuru(failed) -->
+</suite> <!-- Failed suite [TestSuite] -->

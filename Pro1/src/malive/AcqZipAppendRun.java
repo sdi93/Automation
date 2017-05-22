@@ -1,13 +1,17 @@
 package malive;
 
+import java.io.IOException;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class AcqZipAppendRun {
 
 	AcquisitionMethod obj=new AcquisitionMethod();
-	public String reportName ="AcquisitionMethod";
+	public String reportName ="SMSAcquisition";
 	
 	 @BeforeTest
 		public void Browserinvoke()
@@ -55,5 +59,19 @@ public class AcqZipAppendRun {
 		 boolean a = obj.publishig();
 		  Assert.assertEquals(a, true);
 	 }
+	 
+	 @AfterMethod
+		public void tearDown(ITestResult result) throws IOException {
+
+			if (result.getStatus() == ITestResult.FAILURE) {
+			}
+
+		obj.reportFlush();
+			
+		}
+		 @org.testng.annotations.AfterSuite
+			public void quit() {
+				obj.quit();
+			}
 
 }

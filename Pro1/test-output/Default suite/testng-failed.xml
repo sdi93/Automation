@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="malive.InformationalRun">
+      <class name="pkg1.Optimized">
         <methods>
-          <include name="definingResponse"/>
+          <include name="tearDown"/>
           <include name="Browserinvoke"/>
-          <include name="dshboardView"/>
+          <include name="RestL3"/>
+          <include name="quit"/>
         </methods>
-      </class> <!-- malive.InformationalRun -->
+      </class> <!-- pkg1.Optimized -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,5 +1,10 @@
 package malive;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -50,6 +55,7 @@ public class InformationalMethod
 	public String button_saveContinue="//button[contains(.,'Save & Continue')]";
 	public String selectStores_DD = "//div[@class='tree-input']";
 	public String storeSearch_textbox = "//input[@placeholder='Search...']";
+	public String publish_button = "//input[@value='Publish']";
 	
 	List<String> list ;
 	String url;
@@ -69,10 +75,24 @@ public class InformationalMethod
 	String todayScheduling;
 	String sendingTime;
 	
+	File dir1;
+	String reportName;
+	
+	String date =null;
+	public static String initialSNAPLOC ;
+	public static String SNAPLOC ;
 	public void Browserinvoke(String repName)
 	{
 		
-		//report=new ExtentReports("/Users/fishbowl/Desktop/"+repName+".html");
+		date = date();
+		initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
+		reportName = repName;
+
+		dir1 = new File(initialSNAPLOC);
+		SNAPLOC = initialSNAPLOC+"/";
+		dir1.mkdir();
+		
+		report=new ExtentReports(SNAPLOC+"/"+repName+".html",true);
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
@@ -111,25 +131,28 @@ public class InformationalMethod
 
 	public boolean L1_dashboardView() throws Exception
 	   {
-		   login();
+		   
 		   long start_m = System.currentTimeMillis();
 		   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		   try 
 		   {
+			   login();
 			   verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
 			   logger.log(LogStatus.PASS, "");
+			   logger.log(LogStatus.PASS, "Data Loaded successfully on L1");
 		   } 
 		   catch (Exception e)
 		   { 
-			   logger.log(LogStatus.FAIL, "");
+			   logger.log(LogStatus.FAIL, "Data not loaded in all tiles for L1");
 			   return false;
 		   }
 		   return true;
 	   }
    
-   public boolean campaignNaivation()
+	public boolean campaignNaivation()
 	{
+		logger=report.startTest("Campaign Navigation");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -139,10 +162,12 @@ public class InformationalMethod
 					driver.get(createcampaign);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(button_createCampaign)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Campaigns & Offers')]")));
+					 logger.log(LogStatus.PASS, "Navigation to campaign page successful");
 			   } 
 			   catch (Exception e)
 			   { 
 				   System.out.println(e);
+				   logger.log(LogStatus.FAIL, "Navigation to campaign page failed");
 				   return false;
 			   }
 			return true;
@@ -150,6 +175,7 @@ public class InformationalMethod
 	
 	public boolean campaignCreation()
 	{
+		logger=report.startTest("Campaign Creation");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -173,9 +199,11 @@ public class InformationalMethod
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(textbox_campName)));
 			driver.findElement(By.xpath(button_continue)).click();
 		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Define SMS Info Campaign')]")));
+			logger.log(LogStatus.PASS, "New campaign created Successfully");
 		}
 		catch(Exception e)
 		{
+			logger.log(LogStatus.FAIL, "New campaign creation failed");
 				return false;
 		}
 		return true;
@@ -183,6 +211,7 @@ public class InformationalMethod
 	
 	public boolean defineCmapaign()
 	{
+		logger=report.startTest("Defining Campaign");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -197,17 +226,19 @@ public class InformationalMethod
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")));
 			driver.findElement(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Subscription Criteria')]")));
+			logger.log(LogStatus.PASS, "Campaign definition complete");
 		}
 		catch(Exception e)
 		{
-			
-				return false;
+			logger.log(LogStatus.FAIL, "Campaign definition failed");
+			return false;
 		}
 		return true;
 	}
 	
 	public boolean subscriptionCriteria()
 	{
+		logger=report.startTest("Subscription Criteria");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -216,18 +247,20 @@ public class InformationalMethod
 		{
 			driver.findElement(By.xpath(radio_storesOnly)).click();
 			driver.findElement(By.xpath("//input[@value='Save & Continue']")).click();
+			logger.log(LogStatus.PASS, "Subscription Criteria complete");
 			//driver.findElement(By.xpath(button_saveContinue)).click();
 		}
 		catch(Exception e)
 		{
-			
-
+			logger.log(LogStatus.FAIL,"Subscription Criteria failed");
+			return false;
 		}
 		return true;
 	}
 	
 	public boolean storeSlection()
 	{
+		logger=report.startTest("Selecting Store");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
@@ -242,10 +275,11 @@ public class InformationalMethod
 		//driver.findElement(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]"));
 		driver.findElement(By.xpath("//li[@class='ng-scope']/child::*/*//*[contains(text(),'"+store+"')]")).click();
 		driver.findElement(By.xpath(button_saveNext)).click();
+		logger.log(LogStatus.PASS, "Store selection complete");
 			}
 		catch(Exception e)
 		{
-			
+			logger.log(LogStatus.FAIL, "Store selection failed");
 			return false;
 		}
 		return true;
@@ -253,44 +287,60 @@ public class InformationalMethod
 	
 	public boolean definingResponse()
 	{
+		logger=report.startTest("Defining Response");
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		try
-		{
+		{	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Define Response Message')]")));
+		Thread.sleep(7000);
 			driver.findElement(By.xpath("//textarea[contains(@placeholder,'Response Upon Entry')]")).sendKeys(CampaignDescription);
 			driver.findElement(By.id("welcomeMessage")).sendKeys(welcomeMessage);
 			driver.findElement(By.xpath("//*[@id='existsMessage' and @placeholder='Response to Existing Members']")).sendKeys(extMemeber);
 			driver.findElement(By.xpath("//*[@id='invalidMessage' and @placeholder='Invalid Message']")).sendKeys(invalidMessage);
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(button_saveNext)));
 			driver.findElement(By.xpath("//input[@value='Save & Next' and @type='submit']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Scheduling')]")));
+			
+			logger.log(LogStatus.PASS, "Defining  response now complete");
 		}
 		catch(Exception e)
 		{
-			
+			logger.log(LogStatus.FAIL, "Defining response failed");
 			return false;
 		}
 		return true;
 	}
-	 public boolean scheduling()
+	
+	public boolean scheduling()
 		{
+			logger=report.startTest("Sending Schedule");
 			long start_m = System.currentTimeMillis();
 			long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
 			WebDriverWait wait = new WebDriverWait(driver, 100);
 			try
-			{			
+			{		
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Scheduling')]")));
 				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='startTime']/input[@id='dy_timer_control']")));
+				driver.findElement(By.xpath("//*[@id='startTime']/input[@id='dy_timer_control']")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='startTime']/child::*//*//*/*[@class='btn btn-link']")));
+				driver.findElement(By.xpath("//*[@id='startTime']/child::*//*//*/*[@class='btn btn-link']")).click();
 				driver.findElement(By.xpath("//input[@value='Save & Next' and @class = 'bluebutton']")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Review and Publish')]")));
+				logger.log(LogStatus.PASS, "Sending schedule set");
 			}
 			catch(Exception e)
 			{
+				logger.log(LogStatus.FAIL, "Sending schedule failed");
 				System.out.println(e);
 				return false;
 			}
 			return true;
 		}
+	
 	public boolean scheduling2()
 	{
 		long start_m = System.currentTimeMillis();
@@ -302,6 +352,7 @@ public class InformationalMethod
 			// setting Start Date
 			
 			// find the calendar
+			
 			driver.findElement(By.xpath(".//*[@placeholder='Start date']")).click();
 			Thread.sleep(5000);
 			WebElement dateWidget = driver.findElement(By.xpath("html/body/div[5]/div[1]/table/tbody"));
@@ -336,10 +387,31 @@ public class InformationalMethod
 		return true;
 	}
 
-   public void login() {
-		// WebDriverWait wait = new WebDriverWait(driver, 180);
-		// driver.manage().timeouts().implicitlyWait(3, TimeUnit.MINUTES);
-		
+	public boolean publishigAcquisition()
+	{
+		logger=report.startTest("Publishing Broadcast");
+		long start_m = System.currentTimeMillis();
+		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);	
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Review and Publish')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(publish_button)));
+			driver.findElement(By.xpath(publish_button)).click();
+		//	driver.findElement(By.xpath(button_saveNext)).click();
+			logger.log(LogStatus.PASS, "SMS Acquisition published");
+		}
+		catch(Exception e)
+		{
+			logger.log(LogStatus.FAIL, "SMS Acquisition publish failed");
+			return false;
+		}
+		return true;
+	}
+	
+	public void login()
+   {
 		driver.findElement(By.id("login")).clear();
 		driver.findElement(By.id("login")).sendKeys(username);
 		driver.findElement(By.id("pwd")).clear();
@@ -361,6 +433,7 @@ public class InformationalMethod
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp7)));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp8)));
 	}
+	
 	public void hoverOnMainAndClickSubLink(WebElement mainElement, WebElement subElement)
 	   {
 		  Actions actions = new Actions(driver);
@@ -371,4 +444,26 @@ public class InformationalMethod
 		  actions.moveToElement(subElement);
 		  actions.click().build().perform();
 		 }
+	public String  date()
+	{
+		final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+	
+	    LocalDate localDate = LocalDate.now();
+        System.out.println(DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate));
+		String datee = DateTimeFormatter.ofPattern("dd").format(localDate);
+		return datee;
+	}
+
+	public void quit()
+	{
+		driver.close();
+		driver.quit();
+		
+	}
+	
+	public void reportFlush(){
+		report.endTest(logger);
+		report.flush();
+	}
 }
