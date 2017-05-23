@@ -46,7 +46,7 @@ public class Optimized {
 	 //public String AppUrl ="https://olga.fishbowlcloud.com/#/insights/cockpit/";
 	//public String AppUrl = "https://cornerbakerycafe.fishbowlcloud.com/#/insights/cockpit/";
 	//public String AppUrl ="https://tp.fishbowlcloud.com/#/insights/cockpit/";
-	public String AppUrl ="https://peiwei.fishbowlcloud.com/#/insights/cockpit/";
+	public String AppUrl ="https://olga.fishbowlcloud.com/#/insights/cockpit/";
 
 	String Reportname = AppUrl.substring(8);
 

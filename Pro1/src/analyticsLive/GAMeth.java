@@ -223,12 +223,14 @@ public class GAMeth {
 	public void Browserinvoke(String url,String repName)
 	{
 		date = date();
-		initialSNAPLOC = "E:/SeleniumReport/"+repName+date;
+		initialSNAPLOC = "/GitCodeQA/Pro1/report/"+repName+date;
 		reportName = repName;
 
 		dir1 = new File(initialSNAPLOC);
-		SNAPLOC = initialSNAPLOC+"/";
-		dir1.mkdir();
+		String absodir=dir1.getAbsolutePath();
+		File dir2 =new File(absodir);
+		SNAPLOC = absodir+"/";
+		dir2.mkdir();
 		
 		AppUrl=url;
 		report=new ExtentReports(SNAPLOC+"/"+repName+".html",true);
