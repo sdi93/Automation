@@ -215,7 +215,7 @@ public class AcquisitionMethod
 				driver.findElement(By.xpath(textbox_campName)).sendKeys(campaignname);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(textbox_campName)));
 				driver.findElement(By.xpath(button_continue)).click();
-			//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Define SMS Info Campaign')]")));
+			//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Define SMS')]")));
 				logger.log(LogStatus.PASS, "New campaign created Successfully");
 			}
 			catch(Exception e)

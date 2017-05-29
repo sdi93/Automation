@@ -62,11 +62,18 @@ public class GAMeth {
 	public String L1_L7_TD="//*[@id='TopStoreBySale']/child::*/*//*/*//th[2]";
 	public String L1_L8_TD="//*[@id='campaign']/child::*//*/th[2]";
 	
-	public String L1_exportPDF_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@ng-click='exportToPDF()']";
-	public String L1_mailTo_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@ng-click='mailTO()']";
-	public String L1_dashboard_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@id='saveWidgetListItem']";
-	public String L1_reload_button="//*[@class='sfr dbi tar filter_icon filter_icon_ac ov']/li[@ng-click='showDefaultWidgets()']";
+	public String L1_exportPDF_button="//li[@ng-click='exportToPDF()']";
+	public String L1_mailTo_button="//li[@ng-click='mailTO()']";
+	public String L1_dashboard_button="//li[@id='saveWidgetListItem']";
+	public String L1_reload_button="//li[@ng-click='showDefaultWidgets()']";
 	public String backButton="//img[@class='x-icon h24e bgs2000p backs']";
+	
+	public String dash_mail_recepient="//*[@id='emailField' and @placeholder='Recipient']";
+	public String dash_mail_subject="//*[@placeholder='Subject']";
+	public String dash_mail_message="//*[@placeholder='Message']";
+	public String dash_mail_send="//*[@value='Send' and @id='user_btn']";
+	
+	public String dash_widget_submitButton = "//input[@id='submittoshowButton']";
 	
 	
 	public String L1_checkbox="//div[@class='cockpit-header-cb']/child::*/label[@class='checkbox']";
@@ -88,10 +95,7 @@ public class GAMeth {
 	
 	public String loginxp = "//*[@class='x-pad']/child::*/*[@value='Login']";
 	public String KPI_XP = "//span[@class='pvtAttr' and text()='KPI']";
-	public String Cydata = "//*[@id='pivottable']/child::*//*[@class='pvtTotal colTotal' and contains(@data-for, 'col0')]";
-////*[@id='pivottable']/child::*//*[@class='pvtTotal colTotal' and contains(@data-for, 'col0')]
-	public String Pydata = "//*[@id='pivottable']/child::*//*[@class='pvtTotal colTotal' and contains(@data-for, 'col0')]";
-	
+	public String Cydata = "//*[@class='pvtTotal colTotal']";	
 	
 	public String L1_L1 = "//*[@class='netSales']/child::*/*//*/h3";
 	public String L1_L2 = "//*[@class='checkAverage']/child::*/*//*/h3";
@@ -170,24 +174,7 @@ public class GAMeth {
 	public String L2_filter_button="//ul[@class='filter_option large']/li[1]";
 	public String L2_closed_innerfilter_click="xpath=//div[10]/div[2]/div[1]";
 	public String L2_open_innerfilter_data="//div[10]/child::*/*//*/*//*/*/label";
-	
-	
-/*	public int[] L2_netsales_filter=new int[]{9,10,17,18,20,21,22,23};//22
-	public int[] L2_checkaverage_filter=new int[]{9,10,17,18,19,20,21,22,23};//22
-	public int[] L2_grosssales_filter=new int[]{9,10,17,18,20,21,22,23};//22
-	public int[] L2_checkcount_filter=new int[]{9,10,17,20,21,22,23};//22
-	public int[] L2_discount_filter=new int[]{9,10,17,20,21,22,23};//22
-	public int[] L2_guestcount_filter=new int[]{9,10,17,20,21,22,23};//22
-	public int[] L2_guestmix_filter=new int[]{9,10,17,20,21,22,23};//22
-	
-	public int[] L3_commonFilter=new int[]{9,10,11,12,13,14,15,17,18,19,20,21,22,23,24};//22
-	public int[] L3_chkAvg_menumix=new int[]{9,10,11,12,13,14,15,17,18,19,20,25,26};
-	public int[] L3_item_detail=new int[]{9,10,11,12,13,14,15,16,17,18,19,20,24,25,26,37};
-	public int[] L3_cluster=new int[]{9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,33,34,35,36};//22
-	public int[] L3_campaign=new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,27,28,29};
-	public int[] L3_promotion=new int[]{1,5,6,8,9,10,11,12,13,14,15,17,18,19,20,27,28,31,32};
-	public int[] L3_loyalty=new int[]{1,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24};//22
-*/	
+		
 	public String L3_container1="//td[@class='pvtAxisContainer pvtUnused pvtVertList ui-sortable']";
 	//public String caontainer1_element="//td[@class='pvtAxisContainer pvtUnused pvtVertList ui-sortable']/li"
 	public String L3_container2="//td[@class='pvtAxisContainer pvtRows ui-sortable']";
@@ -934,7 +921,6 @@ public class GAMeth {
 		return true;
 	}
 
-
 	public boolean L2_DropDownPeriod(String typel2) throws Exception{
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
@@ -1028,10 +1014,7 @@ public class GAMeth {
 		}
 		return true;
 	}
-
 	
-	
-			
 	public boolean dropdown_filter_check() throws Exception{
 		int i;
 		int[] arg=new int[]{};
@@ -1136,7 +1119,7 @@ public class GAMeth {
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(res)));
 			driver.findElement(By.xpath(res)).click();	
 			Thread.sleep(20000);
-			boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
+			boolean result = verifyelement_L3(KPI_XP, Cydata);
 			if (result == true)
 			{
 				String t =String.valueOf(System.currentTimeMillis());
@@ -1197,7 +1180,7 @@ public class GAMeth {
 		if (completeUrl.equalsIgnoreCase(AppUrl + restUrl)) {
 			try 
 			{
-				boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
+				boolean result = verifyelement_L3(KPI_XP, Cydata);
 				if (result == true) 
 				{
 					String t =String.valueOf(System.currentTimeMillis());
@@ -1279,7 +1262,7 @@ public class GAMeth {
 			WebElement b = driver.findElement(By.xpath(L1_covercount_arrow));
 			WebElement c = driver.findElement(By.xpath(child));
 			hoverOnMainAndClickSubLink(b, c);
-			verifyelement_L3(KPI_XP, Cydata, Pydata);
+			verifyelement_L3(KPI_XP, Cydata);
 			logger.log(LogStatus.PASS, "Data Loaded successfully on Cover Count child "+childNumber);
 			Thread.sleep(20000);
 			
@@ -1329,7 +1312,7 @@ public class GAMeth {
 			WebElement a  =   driver.findElement(By.xpath(hoverElement));
 			WebElement b  =   driver.findElement(By.xpath(arrow));
 			hoverOnly(a);hoverOnMainAndClickSubLink(a,b);
-			boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
+			boolean result = verifyelement_L3(KPI_XP, Cydata);
 			if (result == true) 
 			{
 				String t =String.valueOf(System.currentTimeMillis());
@@ -1375,9 +1358,8 @@ public class GAMeth {
 		}
 		
 	}
-	
-	
-	public boolean backToL2Click()throws Exception{
+		
+	public boolean backToL2Click(String l2_type)throws Exception{
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
@@ -1386,9 +1368,18 @@ public class GAMeth {
 		{
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(backButton)));
 			driver.findElement(By.xpath(backButton)).click();
-			Thread.sleep(8000);
-			logger.log(LogStatus.PASS, "Back on L2");
-		}
+			
+			boolean result = L2_Type(l2_type);
+			if (result == true) 
+			{
+				logger.log(LogStatus.PASS, "Back on L2");
+			 }
+			else
+			{				
+				logger.log(LogStatus.FAIL, "Back on L2 failed");
+				return false;
+			}
+					}
 		catch(Exception e)
 		{
 			String t =String.valueOf(System.currentTimeMillis());
@@ -1405,6 +1396,7 @@ public class GAMeth {
 		}
 		return true;
 	}
+	
 	public boolean backToL1Click()throws Exception{
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
@@ -1472,6 +1464,133 @@ public class GAMeth {
 		}
 		return true;
 	}
+	
+	 public boolean mailButton() throws Exception
+	   {
+		  
+		   logger=report.startTest("Mailing Button");
+		   long start_m = System.currentTimeMillis();
+		   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
+		   WebDriverWait wait = new WebDriverWait(driver, 60);
+		   try 
+		   {
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(L1_mailTo_button)));
+			   driver.findElement(By.xpath(L1_mailTo_button)).click();
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(.,'Email Current Dashboard')]")));
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dash_mail_recepient)));
+			   driver.findElement(By.xpath(dash_mail_recepient)).sendKeys("chaudharysiddharth93@gmail.com");
+			   
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dash_mail_subject)));
+			   driver.findElement(By.xpath(dash_mail_subject)).sendKeys("Dashboard Report");
+			   
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dash_mail_message)));
+			   driver.findElement(By.xpath(dash_mail_message)).sendKeys("Checking Report During regression");
+			   
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dash_mail_send)));
+			   driver.findElement(By.xpath("dash_mail_send")).click();
+			   logger.log(LogStatus.PASS, "Dashboard mail working properly");
+		   } 
+		   catch (Exception e)
+		   { 
+			   
+			   String t =String.valueOf(System.currentTimeMillis());
+			   String snap = "failed_L1_mailbutton"+t;
+			   JavascriptExecutor js = (JavascriptExecutor) driver;
+			   js.executeScript("document.body.style.zoom='" + 50 + "%'");
+			   Thread.sleep(2000);
+			   getscreenshot(snap);
+			   js.executeScript("document.body.style.zoom='" + 100 + "%'");
+			   Thread.sleep(2000);
+			   String image = logger.addScreenCapture(SNAPLOC.concat(snap).concat(".png"));
+			   logger.log(LogStatus.FAIL, "Dashboard mail not working ",image);
+			   return false;
+		   }
+		   return true;
+	   }
+
+	 public boolean dashboardWidgets() throws Exception
+	 {			  
+			   logger=report.startTest("Dashboard Button");
+			   long start_m = System.currentTimeMillis();
+			   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+			   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
+			   WebDriverWait wait = new WebDriverWait(driver, 60);
+			   try 
+			   {
+				   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(.,'Dashboard Widgets')]")));
+				   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dash_widget_submitButton)));
+				   driver.findElement(By.xpath(dash_widget_submitButton)).click();
+				   verifyelementL1(this.L1_L1, this.L1_L2, this.L1_L3, this.L1_L4, this.L1_L5, this.L1_L6, this.L1_L7, this.L1_L8);
+				   logger.log(LogStatus.PASS, "Dashboard widgets working properly");
+			   } 
+			   catch (Exception e)
+			   { 
+				   
+				   String t =String.valueOf(System.currentTimeMillis());
+				   String snap = "failed_L1_mailbutton"+t;
+				   JavascriptExecutor js = (JavascriptExecutor) driver;
+				   js.executeScript("document.body.style.zoom='" + 50 + "%'");
+				   Thread.sleep(2000);
+				   getscreenshot(snap);
+				   js.executeScript("document.body.style.zoom='" + 100 + "%'");
+				   Thread.sleep(2000);
+				   String image = logger.addScreenCapture(SNAPLOC.concat(snap).concat(".png"));
+				   logger.log(LogStatus.FAIL, "Dashboard widgets not working",image);
+				   return false;
+			   }
+			   return true;
+		   }
+	 
+	 public boolean dashboardPDF()throws Exception
+	 {
+		  logger=report.startTest("PDF Button");
+		   long start_m = System.currentTimeMillis();
+		   long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
+		   driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
+		   WebDriverWait wait = new WebDriverWait(driver, 60);
+		   try 
+		   {
+			 
+			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(L1_exportPDF_button)));
+			   driver.findElement(By.xpath(L1_exportPDF_button)).click();
+			   Thread.sleep(15000);
+			  boolean result= isFileDownloaded("C:/Users/schaudhary_ic/Downloads", "Sales Cockpit") ;
+			   
+			   logger.log(LogStatus.PASS, "Dashboard pdf download working properly");
+		   } 
+		   catch (Exception e)
+		   { 
+			   
+			   String t =String.valueOf(System.currentTimeMillis());
+			   String snap = "failed_L1_mailbutton"+t;
+			   JavascriptExecutor js = (JavascriptExecutor) driver;
+			   js.executeScript("document.body.style.zoom='" + 50 + "%'");
+			   Thread.sleep(2000);
+			   getscreenshot(snap);
+			   js.executeScript("document.body.style.zoom='" + 100 + "%'");
+			   Thread.sleep(2000);
+			   String image = logger.addScreenCapture(SNAPLOC.concat(snap).concat(".png"));
+			   logger.log(LogStatus.FAIL, "Dashboard pdf not working",image);
+			   return false;
+		   }
+		   return true;
+	 }
+	 
+	 public boolean isFileDownloaded(String downloadPath, String fileName) {
+		  File dir = new File(downloadPath);
+		  File[] dirContents = dir.listFiles();
+
+		  for (int i = 0; i < dirContents.length; i++) {
+		      if (dirContents[i].getName().equals(fileName)) {
+		          // File has been found, it can now be deleted:
+		          dirContents[i].delete();
+		          return true;
+		      }
+		          }
+		      return false;
+		  }
+	 
 	
 	public boolean ddFilterNumberCheck()throws Exception {
 		long start_m = System.currentTimeMillis();
@@ -1746,25 +1865,38 @@ public class GAMeth {
 			return false;
 	}
 
-	public boolean verifyelement_L3(String xp_L3_1, String xp_L3_2, String xp_L3_3)
+	public boolean verifyelement_L3(String xp_L3_1, String xp_L3_2)
 
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp_L3_1)));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp_L3_2)));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp_L3_3)));
-		String data1 = driver.findElement(By.xpath(xp_L3_2)).getAttribute("data-value").trim();
-		String data2 = driver.findElement(By.xpath(xp_L3_3)).getAttribute("data-value").trim();
-
-		if ((driver.findElement(By.xpath(xp_L3_1)).isDisplayed()) && ValidationMethod.isValidString(data1) && ValidationMethod.isValidString(data2) ) 
+		int iCount = 0;
+		iCount = driver.findElements(By.xpath(xp_L3_2)).size();
+		for(int i = 1; i<=iCount;i++)
 		{
-			if(!data1.equals("0") &&!data2.equals("0")){
-				return true;
+			String data1 = driver.findElement(By.xpath(xp_L3_2+"["+i+"]")).getText();
+			
+			if (ValidationMethod.isValidString(data1) ) 
+			{
+				if(!data1.equals("0")){
+				
+				}
+				else
+				{
+					return false;
+				}
 			}
 			else
 			{
 				return false;
 			}
+			
+		}
+
+		if ((driver.findElement(By.xpath(xp_L3_1)).isDisplayed())) 
+		{
+				return true;
 		}
 		else
 		{

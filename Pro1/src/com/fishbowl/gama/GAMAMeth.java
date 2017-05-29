@@ -92,8 +92,8 @@ public class GAMAMeth {
 	
 	public String loginxp = "//*[@class='x-pad']/child::*/*[@value='Login']";
 	public String KPI_XP = "//span[@class='pvtAttr' and text()='KPI']";
-	public String Cydata = "//*[@id='pivottable']/child::*//*[@class='pvtTotal colTotal' and contains(@data-for, 'col0')]";
-	public String Pydata = "//*[@id='pivottable']/child::*//*[@class='pvtTotal colTotal' and contains(@data-for, 'col0')]";
+	public String Cydata = "//*[@class='pvtTotal colTotal']";
+	
 	
 	
 	public String L1_L1 = "//*[@class='netSales']/child::*/*//*/h3";
@@ -1166,7 +1166,7 @@ public class GAMAMeth {
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(res)));
 			driver.findElement(By.xpath(res)).click();	
 			Thread.sleep(20000);
-			boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
+			boolean result = verifyelement_L3(KPI_XP, Cydata);
 			if (result == true)
 			{
 				String t =String.valueOf(System.currentTimeMillis());
@@ -1227,7 +1227,7 @@ public class GAMAMeth {
 		if (completeUrl.equalsIgnoreCase(AppUrl + restUrl)) {
 			try 
 			{
-				boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
+				boolean result = verifyelement_L3(KPI_XP, Cydata);
 				if (result == true) 
 				{
 					String t =String.valueOf(System.currentTimeMillis());
@@ -1309,7 +1309,7 @@ public class GAMAMeth {
 			WebElement b = driver.findElement(By.xpath(L1_covercount_arrow));
 			WebElement c = driver.findElement(By.xpath(child));
 			hoverOnMainAndClickSubLink(b, c);
-			verifyelement_L3(KPI_XP, Cydata, Pydata);
+			verifyelement_L3(KPI_XP, Cydata);
 			logger.log(LogStatus.PASS, "Data Loaded successfully on Cover Count child "+childNumber);
 			Thread.sleep(20000);
 			
@@ -1359,7 +1359,7 @@ public class GAMAMeth {
 			WebElement a  =   driver.findElement(By.xpath(hoverElement));
 			WebElement b  =   driver.findElement(By.xpath(arrow));
 			hoverOnly(a);hoverOnMainAndClickSubLink(a,b);
-			boolean result = verifyelement_L3(KPI_XP, Cydata, Pydata);
+			boolean result = verifyelement_L3(KPI_XP, Cydata);
 			if (result == true) 
 			{
 				String t =String.valueOf(System.currentTimeMillis());
@@ -1406,7 +1406,7 @@ public class GAMAMeth {
 		
 	}
 		
-	public boolean backToL2Click()throws Exception{
+	public boolean backToL2Click(String l2_type)throws Exception{
 		long start_m = System.currentTimeMillis();
 		long start = TimeUnit.MILLISECONDS.toSeconds(start_m);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
@@ -1415,9 +1415,18 @@ public class GAMAMeth {
 		{
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(backButton)));
 			driver.findElement(By.xpath(backButton)).click();
-			Thread.sleep(8000);
-			logger.log(LogStatus.PASS, "Back on L2");
-		}
+			
+			boolean result = L2_Type(l2_type);
+			if (result == true) 
+			{
+				logger.log(LogStatus.PASS, "Back on L2");
+			 }
+			else
+			{				
+				logger.log(LogStatus.FAIL, "Back on L2 failed");
+				return false;
+			}
+					}
 		catch(Exception e)
 		{
 			String t =String.valueOf(System.currentTimeMillis());
@@ -1776,25 +1785,38 @@ public class GAMAMeth {
 			return false;
 	}
 
-	public boolean verifyelement_L3(String xp_L3_1, String xp_L3_2, String xp_L3_3)
+	public boolean verifyelement_L3(String xp_L3_1, String xp_L3_2)
 
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp_L3_1)));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp_L3_2)));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xp_L3_3)));
-		String data1 = driver.findElement(By.xpath(xp_L3_2)).getAttribute("data-value").trim();
-		String data2 = driver.findElement(By.xpath(xp_L3_3)).getAttribute("data-value").trim();
-
-		if ((driver.findElement(By.xpath(xp_L3_1)).isDisplayed()) && ValidationMethod.isValidString(data1) && ValidationMethod.isValidString(data2) ) 
+		int iCount = 0;
+		iCount = driver.findElements(By.xpath(xp_L3_2)).size();
+		for(int i = 1; i<=iCount;i++)
 		{
-			if(!data1.equals("0") &&!data2.equals("0")){
-				return true;
+			String data1 = driver.findElement(By.xpath(xp_L3_2+"["+i+"]")).getText();
+			
+			if (ValidationMethod.isValidString(data1) ) 
+			{
+				if(!data1.equals("0")){
+				
+				}
+				else
+				{
+					return false;
+				}
 			}
 			else
 			{
 				return false;
 			}
+			
+		}
+
+		if ((driver.findElement(By.xpath(xp_L3_1)).isDisplayed())) 
+		{
+				return true;
 		}
 		else
 		{

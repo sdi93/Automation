@@ -115,7 +115,7 @@ public class ClpTestMeth
 		   {
 			   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(.,'Define Campaign & Offer')]")));
 			  
-			   driver.findElement(By.xpath("//textarea[@id='offer_title']")).sendKeys("Test  22 May 2017");
+			   driver.findElement(By.xpath("//textarea[@id='offer_title']")).sendKeys("Test  26 May 2017");
 			   
 			   Thread.sleep(3000);
 			   

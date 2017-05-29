@@ -38,15 +38,14 @@ public class Optimized {
 	public String password = "Schaudhary123";
 	//public String Username = "serveradmin";
 	//public String password = "mP2$Kx_uz@NH";
+	// public String Username = "fbjambaadmin";
+	//public String password = "SQj0Kp3Hez";
 	public static String SNAPLOC = "E:/SeleniumSnaps/";
 	
 	 //public String Username = "fbjambaadmin";
 	 //public String password = "SQj0Kp3Hez";
-	//public String AppUrl = "https://tp.fishbowlcloud.com/#/insights/cockpit/";
-	 //public String AppUrl ="https://olga.fishbowlcloud.com/#/insights/cockpit/";
-	//public String AppUrl = "https://cornerbakerycafe.fishbowlcloud.com/#/insights/cockpit/";
-	//public String AppUrl ="https://tp.fishbowlcloud.com/#/insights/cockpit/";
-	public String AppUrl ="https://olga.fishbowlcloud.com/#/insights/cockpit/";
+	
+	public String AppUrl ="https://txrh.fishbowlcloud.com/#/insights/cockpit/";
 
 	String Reportname = AppUrl.substring(8);
 
@@ -123,22 +122,6 @@ public class Optimized {
 		
 		
 
-/*
-ChromeOptions options = new ChromeOptions();
-
-options.addArguments("start-maximized");
-
-System.setProperty("webdriver.chrome.driver", "/Users/fishbowl/Documents/ws1/Pro1/chromedriver");
-DesiredCapabilities capabilities = DesiredCapabilities.chrome(); capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
-driver = new ChromeDriver(options);
-report = new ExtentReports(Reportpath, true);
-
-driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
-driver.get(AppUrl);
-// logger.log(LogStatus.INFO, "Browser started ");
-driver.manage().deleteAllCookies();
-driver.manage().window().maximize();*/
 
 	}
 

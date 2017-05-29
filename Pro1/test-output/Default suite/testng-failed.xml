@@ -5,11 +5,24 @@
     <classes>
       <class name="com.fishbowl.gama.LiveTestCall">
         <methods>
+          <include name="L3_TopStores"/>
+          <include name="snedBroadcastNow"/>
           <include name="quit"/>
-          <include name="tearDown"/>
+          <include name="L3_clusterFrequencyNavigator"/>
+          <include name="L3_clusterVolumeNavigator"/>
           <include name="Browserinvoke"/>
+          <include name="clusterFrequencyFilerCheck"/>
+          <include name="publishBroadcastMessage"/>
           <include name="L1_storelist_dropdown"/>
-          <include name="L1_storename_dropdown"/>
+          <include name="checkAverageMenuMix"/>
+          <include name="clusterSpendBack"/>
+          <include name="clusterVolumeFilerCheck"/>
+          <include name="audienceBroadcastSelection"/>
+          <include name="tearDown"/>
+          <include name="checkCountOrderMode"/>
+          <include name="L3_ItemSales"/>
+          <include name="PersonaBack"/>
+          <include name="storeBroadcastSelection"/>
         </methods>
       </class> <!-- com.fishbowl.gama.LiveTestCall -->
     </classes>

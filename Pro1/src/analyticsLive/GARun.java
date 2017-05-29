@@ -15,9 +15,9 @@ public class GARun
 	public String password = "Schaudhary123";
 	// public String Username = "fbjambaadmin";
 	// public String password = "SQj0Kp3Hez";
-	public String AppUrl ="https://cornerbakerycafe.fishbowlcloud.com/#/insights/cockpit/";
+	public String AppUrl ="https://olga.fishbowlcloud.com/#/insights/cockpit/";
 	GAMeth obj=new GAMeth();
-	public String reportName ="cornerbakerycafe";
+	public String reportName ="olga";
 	
 	 @BeforeTest
 		public void Browserinvoke()
@@ -125,7 +125,7 @@ public class GARun
 	 
 	 @Test(priority=16)
 	 public void nsOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("netSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -143,7 +143,7 @@ public class GARun
 	 
 	 @Test(priority=19)
 	 public void nsDPBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("netSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -161,7 +161,7 @@ public class GARun
 	 
 	 @Test(priority=22)
 	 public void nsOMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("netSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -179,7 +179,7 @@ public class GARun
 	 
 	 @Test(priority=25)
 	 public void nsDWBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("netSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -240,7 +240,7 @@ public class GARun
 	 
 	 @Test(priority=35)
 	 public void caOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkAverage");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -258,7 +258,7 @@ public class GARun
 	 
 	 @Test(priority=38)
 	 public void caTSBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkAverage");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -276,7 +276,7 @@ public class GARun
 	 
 	 @Test(priority=41)
 	 public void caMMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkAverage");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -338,7 +338,7 @@ public class GARun
 	 
 	 @Test(priority=51)
 	 public void gmOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestMix");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -356,7 +356,7 @@ public class GARun
 	 
 	 @Test(priority=54)
 	 public void gmDPBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestMix");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -374,7 +374,7 @@ public class GARun
 	 
 	 @Test(priority=57)
 	 public void gmOMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestMix");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -392,7 +392,7 @@ public class GARun
 	 
 	 @Test(priority=60)
 	 public void gmDWBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestMix");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -453,7 +453,7 @@ public class GARun
 	 
 	 @Test(priority=70)
 	 public void ccOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -471,7 +471,7 @@ public class GARun
 	 
 	 @Test(priority=73)
 	 public void ccDPBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -489,7 +489,7 @@ public class GARun
 	 
 	 @Test(priority=76)
 	 public void ccOMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -507,7 +507,7 @@ public class GARun
 	 
 	 @Test(priority=79)
 	 public void ccDWBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("checkCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -568,7 +568,7 @@ public class GARun
 	 
 	 @Test(priority=89)
 	 public void dOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("discount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -586,7 +586,7 @@ public class GARun
 	 
 	 @Test(priority=92)
 	 public void dDDPBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("discount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -604,7 +604,7 @@ public class GARun
 	 
 	 @Test(priority=95)
 	 public void dOMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("discount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -622,7 +622,7 @@ public class GARun
 	 
 	 @Test(priority=98)
 	 public void dDWBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("discount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -683,7 +683,7 @@ public class GARun
 	 
 	 @Test(priority=108)
 	 public void grsSOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("grossSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -701,7 +701,7 @@ public class GARun
 	 
 	 @Test(priority=111)
 	 public void grsSDPBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("grossSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -719,7 +719,7 @@ public class GARun
 	 
 	 @Test(priority=114)
 	 public void grsSOMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("grossSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -737,7 +737,7 @@ public class GARun
 	 
 	 @Test(priority=117)
 	 public void grsSDWBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("grossSales");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -798,7 +798,7 @@ public class GARun
 	 
 	 @Test(priority=127)
 	 public void gcOTBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -816,7 +816,7 @@ public class GARun
 	 
 	 @Test(priority=130)
 	 public void gcDPBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -834,7 +834,7 @@ public class GARun
 	 
 	 @Test(priority=133)
 	 public void gcOMBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 
@@ -852,7 +852,7 @@ public class GARun
 	 
 	 @Test(priority=136)
 	 public void gcDWBack()throws Exception {
-		 boolean a = obj.backToL2Click();
+		 boolean a = obj.backToL2Click("guestCount");
 		 Assert.assertEquals(a,true);
 	 }
 	 

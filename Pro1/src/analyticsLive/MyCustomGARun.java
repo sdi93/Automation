@@ -9,13 +9,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class MyCustomGARun {
-	public String Username = "serveradmin";
-	public String password = "password";
+	public String Username = "schaudhary_ic";
+	public String password = "Schaudhary123";
 	//public String Username = "fbjambaadmin";
 	//public String password = "SQj0Kp3Hez";
-	public String AppUrl ="https://qa-jamba.fishbowlcloud.com/#/insights/cockpit/";
+	public String AppUrl ="https://jamba.fishbowlcloud.com/#/insights/cockpit/";
 	GAMeth obj=new GAMeth();
-	public String reportName ="qa-jamba";
+	public String reportName ="jamba";
 	
 	 @BeforeTest
 		public void Browserinvoke()
@@ -29,9 +29,9 @@ public class MyCustomGARun {
 		  Assert.assertEquals(a, true);
 	 }
 	 
-	@Test(priority=1)
-	 public void L1_storename_dropdown() throws Exception{
-		 boolean a =  obj.storename_dropDown();
+	 @Test(priority=171)
+	 public void L3_PromotionNavigator()throws Exception{
+		 boolean a = obj.L3_UrlNavigator(AppUrl,"promotion","no");
 		  Assert.assertEquals(a, true);
 	 }
 	 
