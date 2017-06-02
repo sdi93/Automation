@@ -1,0 +1,3 @@
+Username=//input[@id='login']
+Password=//input[@id='pwd']
+Login_button=//div[@class='clearfix tac']//input[@class='bluebutton']	
