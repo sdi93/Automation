@@ -1,0 +1,21 @@
+signup_link = //a[contains(text(),'CREATE ONE')]
+
+profile_navTab = //*[@id='myNavbar']/ul/li[2]/a
+edit_button = //button[contains(text(),'Edit')]
+editPorf_fName = //*[@placeholder='First name']
+saveButton = //button[contains(.,' Save')]
+
+dialog_okButton = //button[contains(.,'      Ok    ')]
+
+password_navTab = //*[@id='myNavbar']/ul/child::*//span[contains(.,'RESET PASSWORD')]
+newpassword_tetbox = //input[contains(@placeholder,' New Password')]
+confPassword_textbox = //input[contains(@placeholder,'Confirm Password')]
+submitButton_password = //button[contains(.,'Submit')]
+current_password = //input[@placeholder='Current Password']
+
+success_dialog = //h2[contains(.,'Success')]
+logout_navTab = //*[@id='myNavbar']/ul/child::*/*[contains(.,'LOG OUT')]
+signUpForm = //div[@class='ng-scope row-mt10']
+logout_navTab = //span[contains(.,'LOG OUT')]
+signin_pageVerify = //*[contains(text(),'Email/Mobile Phone')]
+resetPass_pageVerify = //h2[contains(.,'Reset Password')]
