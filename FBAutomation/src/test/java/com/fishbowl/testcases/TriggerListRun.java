@@ -19,7 +19,7 @@ public class TriggerListRun extends Common
 	{
 		CampaignName obj1 = new CampaignName(driver);
         obj1.campaign_navigation();
-       // obj1.enter_campName("Broadcast");
+        obj1.enter_campName("Triggered");
         String camp_name = obj1.enter_campName("Triggered");
         		
         		
