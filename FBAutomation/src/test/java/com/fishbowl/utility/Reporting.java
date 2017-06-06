@@ -26,6 +26,7 @@ import com.relevantcodes.extentreports.LogStatus;
 		public static String SNAPLOC ;
 		public static File dir1;
 		public static String date =null;
+		public static String time =null;
 		
 		public static String date()
 		{
@@ -42,7 +43,8 @@ import com.relevantcodes.extentreports.LogStatus;
 		public static void reportINitialise(String repName)
 		{
 			date = date();
-			initialSNAPLOC = "/SeleniumWorkspace/ws1/FBAutomation/report/"+repName+date;
+			time = String.valueOf(System.currentTimeMillis());
+			initialSNAPLOC = "D:/gitcode/SelAutomation/FBAutomation/report/"+repName+date+time;
 			dir1 = new File(initialSNAPLOC);
 			String absodir=dir1.getAbsolutePath();
 			File dir2 =new File(absodir);

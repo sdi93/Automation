@@ -37,7 +37,7 @@ public class CouponSelection {
 	public void couponSelection(WebDriver driver) throws Exception
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-		ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
+		ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
 		
 		driver.findElement(By.xpath("//input[@placeholder='Select Promotion Id']")).click();
 		driver.findElement(By.xpath("//input[@placeholder='Select Promotion Id']")).sendKeys("LSM: $1 off WFN (T1 2015)");

@@ -1,5 +1,7 @@
 package com.fishbowl.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -94,6 +97,7 @@ public class AudienceSelection
     		{
     			rep.report_status_fail("Audience", "Audience is not selected");
     		}
+    		rep.reportFlush();
 		}
     		
     	public void store_audience_criteria_tiggered() throws Exception
@@ -113,6 +117,7 @@ public class AudienceSelection
     		{
     			rep.report_status_fail("Audience", "Audience is not selected");
     		}
+    		rep.reportFlush();
 		}
     	 
  	
@@ -125,9 +130,10 @@ public class AudienceSelection
     	   usinglist.click();
     	   button_saveContinue.click();
     	   
-    	   Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='showUploadImagePopUpZindex']//select")));
-    	   dropdown.selectByVisibleText("Dickey’s Barbecue Pit");
-    	   button_saveNext.click();
+    	   Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='showUploadImagePopUpZindex']//select[@ng-model='Lists.selectedOption']")));
+	    	 dropdown.selectByVisibleText("Test");
+	    	 button_saveNext.click();
+	    	 
     	   rep.report_status_pass("Audience is selected");
     	   
     		 }
@@ -136,19 +142,40 @@ public class AudienceSelection
     		 {
     			 rep.report_status_fail("Audience", "Audience is not selected");
     		 }
-    	
+    		 rep.reportFlush();
    	 }
     	 
     	 
-    	 public void audience_Criteria_ExstSegment() throws InterruptedException
+    	 public void audience_Criteria_ExstSegment() throws Exception
          {
-          remove_Segment.click();
-          using_extSeg.click();
-          include_Segment.click();
-          include_Segment.sendKeys("Hawaii3_12_14");
-          Thread.sleep(2000);
-          include_Segment.sendKeys(Keys.TAB);
+    		 rep.logger=rep.report.startTest("Audience Selection");
+      		
+      		WebDriverWait wait = new WebDriverWait(driver, 60);
+          try
+          {
+        	  
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Using Existing Segment')]")));
+          driver.findElement(By.xpath("//span[contains(text(),'Using Existing Segment')]")).click();
+          driver.findElement(By.xpath("//input[@value='Save & Next']")).click();
+          //button_saveNext.click();
           
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Define Audience you want to Target ')]")));
+          
+          driver.findElement(By.xpath("//a[@ng-click='$removeTag()']")).click();
+          driver.findElement(By.xpath("//input[@placeholder='Add Inclusionary Segment']")).click();
+          driver.findElement(By.xpath("//input[@placeholder='Add Inclusionary Segment']")).sendKeys("Hawaii3_12_14");
+          Thread.sleep(2000);
+          driver.findElement(By.xpath("//input[@placeholder='Add Inclusionary Segment']")).sendKeys(Keys.TAB);
+          driver.findElement(By.xpath("//input[@value='Save & Next']")).click();
+          rep.report_status_pass("Audience is selected");
+          }
+          catch(Exception e)
+   		{
+        	  
+   			rep.report_status_fail("Audience", "Audience is not selected");
+   			
+   		}
+          rep.reportFlush();
          }
     	 
     	 public void audience_Criteria_NationalBroadCast() throws Exception
@@ -173,8 +200,73 @@ public class AudienceSelection
      		{
      			rep.report_status_fail("Audience", "Audience is not selected");
      		}
-          
+     		rep.reportFlush();
          }
+    	 public void audience_Criteria_AllMembers() throws Exception
+         {
+    		 rep.logger=rep.report.startTest("Audience Selection");
+      		
+      		WebDriverWait wait = new WebDriverWait(driver, 60);
+          try
+          {
+        	  
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Create trigger for')]")));
+          driver.findElement(By.xpath("//span[contains(text(),'Create trigger for')]")).click();
+          driver.findElement(By.xpath("//button[contains(.,'Save & Continue')]")).click();
+          
+          rep.report_status_pass("Audience is selected");
+          }
+          catch(Exception e)
+   		{
+   			rep.report_status_fail("Audience", "Audience is not selected");
+   		}
+          rep.reportFlush();
+         }
+    	 
+    	 public void audience_Criteria_All_Broad() throws Exception
+         {
+    		 rep.logger=rep.report.startTest("Audience Selection");
+      		
+      		WebDriverWait wait = new WebDriverWait(driver, 60);
+          try
+          {
+        	  
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'All (Using List and Store, other Attributes)')]")));
+          driver.findElement(By.xpath("//span[contains(text(),'All (Using List and Store, other Attributes)')]")).click();
+          driver.findElement(By.xpath("//input[@value='Save & Next']")).click();
+          
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='showUploadImagePopUpZindex']//select[@ng-model='Lists.selectedOption']")));
+          
+          // Select List
+          driver.findElement(By.xpath("//*[@id='showUploadImagePopUpZindex']//select[@ng-model='Lists.selectedOption']")).click();
+          Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='showUploadImagePopUpZindex']//select[@ng-model='Lists.selectedOption']")));
+          int lsize = dropdown.getOptions().size();
+          if(lsize > 1)
+          {
+        	  driver.findElement(By.xpath("//*[@id='showUploadImagePopUpZindex']//select[@ng-model='Lists.selectedOption']/option[2]")).click();
+          }
+          
+          //Select Segment
+          driver.findElement(By.xpath("//a[@ng-click='$removeTag()']")).click();
+          driver.findElement(By.xpath("//input[@placeholder='Add Inclusionary Segment']")).click();
+          driver.findElement(By.xpath("//input[@placeholder='Add Inclusionary Segment']")).sendKeys("Hawaii3_12_14");
+          Thread.sleep(2000);
+          driver.findElement(By.xpath("//input[@placeholder='Add Inclusionary Segment']")).sendKeys(Keys.TAB);
+          
+          //Select Store
+          
+          
+          rep.report_status_pass("Audience is selected");
+          }
+          catch(Exception e)
+   		{
+        	System.out.println(e.getMessage());
+   			rep.report_status_fail("Audience", "Audience is not selected");
+   		}
+          rep.reportFlush();
+         }
+    	 
+    	 
     	 
     }
  	   

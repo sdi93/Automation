@@ -13,7 +13,7 @@ public class Level1_Locators
 	{
 		try
 		{
-			File f= new File("/SeleniumWorkspace/ws1/FBAutomation/Level1_Locators.property");
+			File f= new File("D:/gitcode/SelAutomation/FBAutomation/Level1_Locators.property");
 			FileInputStream fis =  new FileInputStream(f);
 			pro = new Properties();
 			pro.load(fis);

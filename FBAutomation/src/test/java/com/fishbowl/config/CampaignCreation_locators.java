@@ -13,7 +13,7 @@ public static Properties pro;
 	{
 		try
 		{
-			File f= new File("/SeleniumWorkspace/ws1//FBAutomation/Locators/CreateCampaignLocators.property");
+			File f= new File("D:/gitcode/SelAutomation/FBAutomation/Locators/CreateCampaignLocators.property");
 			FileInputStream fis =  new FileInputStream(f);
 			pro = new Properties();
 			pro.load(fis);

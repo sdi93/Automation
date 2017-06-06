@@ -7,29 +7,28 @@ import com.fishbowl.pages.AudienceSelection;
 import com.fishbowl.pages.CampaignDefinition;
 import com.fishbowl.pages.CampaignName;
 import com.fishbowl.pages.CampaignPublish;
-import com.fishbowl.pages.CouponSelection;
 import com.fishbowl.pages.Scheduling;
 
-public class SMSBroadCastCoupon extends Common{
+public class TriggerAllMembersRun extends Common{
 	
 	@Test
-	public void SMSBroadCast_Coupon() throws Exception
+	public void TriggerAllMembers() throws Exception
 	{
 		CampaignName obj = new CampaignName(driver);
 		obj.campaign_navigation();
-		obj.enter_campName("Broadcast");
+		obj.enter_campName("Triggered");
 		
 		CampaignDefinition campdef = new CampaignDefinition(driver);
-		campdef.define_campaign_coupon("Broadcast");
+		campdef.define_campaign("Triggered");
 		
 		AudienceSelection as = new AudienceSelection(driver);
-		as.audience_Criteria_ExstSegment();
+		as.audience_Criteria_AllMembers();
 		
 		Scheduling Schedule =  new Scheduling(driver);
-		Schedule.scheduling_broad();
+		Schedule.schedule_trigger();
 		
 		CampaignPublish camp = new CampaignPublish(driver);
-		camp.publishigBroadcast();
+		camp.publishing_trigger();
 	}
 
 }

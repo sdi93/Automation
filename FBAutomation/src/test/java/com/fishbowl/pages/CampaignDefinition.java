@@ -42,7 +42,7 @@ public class CampaignDefinition
 		if(CampaignType.equalsIgnoreCase("BroadCast"))
 		{   
 		
-		   ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
+		   ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
 		   
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_dropdown())));
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_textbox())));
@@ -56,7 +56,7 @@ public class CampaignDefinition
 	
 		else if(CampaignType.equalsIgnoreCase("Informational"))
 		{
-			ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSInformational");
+			ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSInformational");
 			
 			String keyword = RandomGenerator.random_number()+ReadExcelUtils.getCellData(0, 1);
 			
@@ -74,7 +74,7 @@ public class CampaignDefinition
 		
 		else if(CampaignType.equalsIgnoreCase("Acquisition"))
 		{
-			ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignAcquisition");
+			ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignAcquisition");
 					
 			driver.findElement(By.xpath(obj.campDesc())).sendKeys(ReadExcelUtils.getCellData(0, 1));
 			
@@ -96,16 +96,15 @@ public class CampaignDefinition
 		else if(CampaignType.equalsIgnoreCase("Triggered"))
 		   {
 		      
-		      ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx","CamapignTrigger");
+		      ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx","CamapignTrigger");
 		 
-		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_dropdown())));
-		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_textbox())));
+//		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_dropdown())));
+//		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_textbox())));
 		   
-		      driver.findElement(By.xpath(obj.defCamp_textbox())).sendKeys(ReadExcelUtils.getCellData(0, 1));
+		      driver.findElement(By.xpath(obj.defCamp_textbox())).sendKeys(ReadExcelUtils.getCellData(0, 2));
 		    
 		      driver.findElement(By.xpath(obj.button_saveNext())).click();
 		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Audience Criteria')]")));
-		    
 		   
 	        }
 		
@@ -134,7 +133,7 @@ public class CampaignDefinition
 	    {
 	    	
 	     WebDriverWait wait = new WebDriverWait(driver, 60);
-	     ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
+	     ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
 	    
 	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_dropdown())));
 	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.defCamp_textbox())));
@@ -146,7 +145,7 @@ public class CampaignDefinition
 	    
 	     driver.findElement(By.xpath(obj.button_saveNext())).click();
 	     
-	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Audience Criteria')]")));
+//	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Choose Audience Criteria')]")));
 	     
 	     rep.report_status_pass("Campaign coupon selected");
 	    }
@@ -156,7 +155,7 @@ public class CampaignDefinition
 	    	rep.report_status_fail("Coupon", "Campaign coupon not selected");
 	    }
 	  
-	       
+	    rep.reportFlush();
 	     }
 		
 	
