@@ -39,7 +39,7 @@ public class CampaignName
 	    {
 		   
 		   Thread.sleep(10000);
-		   ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "Credentials");
+		   ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "Credentials");
 		   driver.get(ReadExcelUtils.getCellData(0,0));
 		   
 		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.button_createCampaign())));
@@ -67,7 +67,7 @@ public class CampaignName
 		  
      public String enter_campName(String CampaignType) throws Exception
  	{
- 		rep.logger=rep.report.startTest("BroadCast Camapign Information");
+ 		rep.logger=rep.report.startTest("Campaign Naming");
  		
  		WebDriverWait wait = new WebDriverWait(driver, 60);
  		
@@ -78,7 +78,7 @@ public class CampaignName
  		if(CampaignType.equalsIgnoreCase("BroadCast"))
  		{   
  		
- 		  ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
+ 		  ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSBroadcast");
  		   
  		   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.dd_broadcast())));
  		   driver.findElement(By.xpath(obj.dd_broadcast())).click();
@@ -96,7 +96,7 @@ public class CampaignName
  		
  		else if(CampaignType.equalsIgnoreCase("Informational"))
 		{
-			ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSInformational");
+			ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignSMSInformational");
 			
 		//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.dropd_smsType())));
 		//	driver.findElement(By.xpath(obj.dropd_smsType())).click();
@@ -115,7 +115,7 @@ public class CampaignName
  		
  		else if(CampaignType.equalsIgnoreCase("Acquisition"))
 		{
-			ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx", "CampaignAcquisition");
+			ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "CampaignAcquisition");
 			
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.dropd_smsType())));
 //			driver.findElement(By.xpath(obj.dropd_smsType())).click();
@@ -150,11 +150,10 @@ public class CampaignName
 		      driver.findElement(By.xpath(obj.dd_triggered())).click();
 		    
 		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.textbox_campName())));
-		      ReadExcelUtils.setExcelFile("/SeleniumWorkspace/ws1/FBAutomation/Data/CampaignData.xlsx","CamapignTrigger");
+		      ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx","CamapignTrigger");
 		      
 		      campaign_name = ReadExcelUtils.getCellData(0, 0) + RandomGenerator.random_number();
 		      driver.findElement(By.xpath(obj.textbox_campName())).sendKeys(campaign_name);
-		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj.textbox_campName())));
 		      driver.findElement(By.xpath(obj.button_continue())).click();
 		      
 		      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Define Campaign & Offer')]")));
@@ -172,11 +171,11 @@ public class CampaignName
     	 rep.report_status_fail("camp_name", "Campaign name not entered");
     	 
      }
- 		
+ 		 rep.reportFlush();
        return campaign_name;
  		
- 		
  	}
+    
      
 }
  	

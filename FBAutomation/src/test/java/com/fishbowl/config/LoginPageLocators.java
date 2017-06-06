@@ -13,7 +13,7 @@ public class LoginPageLocators
 	{
 		try
 		{
-			File f= new File("/SeleniumWorkspace/ws1/FBAutomation/Locators/LoginPageLocators.property");
+			File f= new File("D:/gitcode/SelAutomation/FBAutomation/Locators/LoginPageLocators.property");
 			FileInputStream fis =  new FileInputStream(f);
 			pro = new Properties();
 			pro.load(fis);

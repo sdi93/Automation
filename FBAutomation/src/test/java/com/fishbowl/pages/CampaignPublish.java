@@ -106,22 +106,22 @@ public class CampaignPublish
 		
 	}
 	
-	public void publishing_trigger()
+	public void publishing_trigger() throws Exception
 	{
-		
+		rep.logger=rep.report.startTest("Informational Campaign Publishing Start");
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		try
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Review and Publish')]")));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Publish']")));
 			driver.findElement(By.xpath("//input[@value='Publish']")).click();
-			
+			rep.report_status_pass("Trigger campaign published");
 		}
 		catch(Exception e)
 		{
-			
+			rep.report_status_fail("Trigger_publish", "Trigger campaign not published");
 		}
-		
+		rep.reportFlush();
 	}
 	
 	

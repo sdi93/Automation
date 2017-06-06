@@ -128,12 +128,14 @@ public class Scheduling
 				//	logger.log(LogStatus.FAIL, "Setting sending schedule failed");
 					
 				}
+				rep.reportFlush();
 		
 	        }
 		   		    
 		    public void schedule_trigger() 
 		    {
-		     
+		    	rep.logger=rep.report.startTest("Sending Trigger Schedule");
+		    	
 				WebDriverWait wait = new WebDriverWait(driver, 100);
 				try
 				{
@@ -148,13 +150,15 @@ public class Scheduling
 					
 					driver.findElement(By.xpath(sch.button_saveNext())).click();
 					Thread.sleep(10000);
+					rep.logger.log(LogStatus.PASS, "Sending schedule set complete");
+					
 				}
 				catch(Exception e)
 				{
-					
+					rep.logger.log(LogStatus.FAIL, "Sending schedule set failed");
 				}
 				
-		     
+				rep.reportFlush();
 		    }
 
 }
