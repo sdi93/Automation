@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.fishbowl.config.Common;
-import com.fishbowl.config.Level1_Locators;
+import com.fishbowl.config.GA_L1_Locators;
 import com.fishbowl.utility.Reporting;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -20,7 +20,7 @@ public class Dashboard
 	
 	Reporting rep = new Reporting();
 	
-	Level1_Locators obj = new Level1_Locators();
+	GA_L1_Locators obj = new GA_L1_Locators();
 
 	public void L1_dashboardView() throws Exception
 	   {

@@ -44,7 +44,7 @@ import com.relevantcodes.extentreports.LogStatus;
 		{
 			date = date();
 			time = String.valueOf(System.currentTimeMillis());
-			initialSNAPLOC = "D:/gitcode/SelAutomation/FBAutomation/report/"+repName+date+time;
+			initialSNAPLOC = "/FishbowlGitCode/FBAutomation/report/"+repName+date+time;
 			dir1 = new File(initialSNAPLOC);
 			String absodir=dir1.getAbsolutePath();
 			File dir2 =new File(absodir);

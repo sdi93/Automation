@@ -3,11 +3,19 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.fishbowl.testdata.ListCreation">
+      <class name="com.fishbowl.testcases.EndUserPortalTest">
         <methods>
-          <include name="create_list"/>
+          <include name="afterChangePasswordLogout"/>
+          <include name="afterRegLogout"/>
+          <include name="tearDown"/>
+          <include name="loginNewAccount"/>
+          <include name="loginWithChangePassword"/>
+          <include name="changepassword"/>
+          <include name="endUserPortal"/>
+          <include name="eup_regForm"/>
+          <include name="updateMemberProfile"/>
         </methods>
-      </class> <!-- com.fishbowl.testdata.ListCreation -->
+      </class> <!-- com.fishbowl.testcases.EndUserPortalTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,0 +1,20 @@
+ L1_sma_t1 = //li[1]/child::*//*[@id='ageRangeChart']
+ L1_sma_t2 = //li[2]/child::*//*[contains(text(),'Male')]
+ L1_sma_t3 = //li[3]/child::*//*[contains(text(),'25K')]
+ L1_sma_t4 = //li[4]/child::*//*[contains(@class,'img-responsive')]
+ L1_sma_t5 = //li[5]/child::*//*[contains(@id,'occupationChart')]
+ L1_sma_t6 = //li[6]/child::*//*[contains(@id,'educationPieChart')]
+ L1_sma_t7 = //li[7]/child::*//*[contains(@id,'prmEthnicityContainer')]
+ L1_sma_t8 = //li[8]/child::*//*[contains(@class,'img-responsive')]
+ L1_sma_t9 = //li[9]/child::*//*[contains(@class,'dark')]
+ 
+ L1_sma_t10GaLite = //li[10]/child::*//*[@id='personaPieChart']
+ 
+ L1_sma_t10 = //li[10]/child::*//*[contains(@class,'dark')]
+ 
+ L1_sma_t11 = //li[11]/child::*//*[contains(@class,'dark')]
+ L1_sma_t12 = //li[12]/child::*//*[contains(@class,'dark')]
+ L1_sma_t13 = //li[13]/child::*//*[@id='avgCheckChart']
+ L1_sma_t14 = //li[14]/child::*//*[@id='personaPieChart']
+ L1_sma_t15 = //li[15]/child::*//*[@id='emailOpenRateChart']
+ L1_sma_t16 = //li[16]/child::*//*[@id='emailRedemptionRateChart']

@@ -1,0 +1,37 @@
+ L1_L1 = "//*[@class='netSales']/child::*/*//*/h3";
+ L1_L2 = "//*[@class='checkAverage']/child::*/*//*/h3";
+ L1_L3 = "//*[@class='guestCount']/child::*/*//*/h3";
+ L1_L4 = "//*[@id='customerMix']/child::*//*/tbody/tr[1]/td[2]";
+ L1_L5 = "//*[@id='itemSales']/child::*/*//*/tbody/tr[1]/td[2]";
+ L1_L6 = "//*[@id='decile_bubble']/child::*/*//*[contains(text(),'NetSales')]";
+ L1_L7 = "//*[@id='TopStoreBySale']/child::*//tbody/tr[1]/td[2]";
+ L1_L8 = "//*[@id='campaign']/child::*//tbody/tr[1]/td[2]";
+	
+ L1_buttonPeriod = //li[@id='ll_Period']
+ L1_buttonQuater = //li[@id='ll_Quarter']
+ L1_buttonYear = //li[@id='ll_Year']
+ L1_buttonApply = //div[@class='clearfix minx']/div[3]/div[1]/button
+ 
+ L1_L1_TD = //*[@class='netSales']/child::*/*//*/h4
+ L1_L2_TD = //*[@class='checkAverage']/child::*/*//*/h4
+ L1_L3_TD = //*[@class='guestCount']/child::*/*//*/h4
+ L1_L4_TD = //*[@id='customerMix']/child::*/*//*/*//*/th[2]
+ L1_L5_TD = //*[@id='itemSales']/child::*/*//*/*//*/*/th[2]
+ L1_L7_TD = //*[@id='TopStoreBySale']/child::*/*//*/*//th[2]
+ L1_L8_TD = //*[@id='campaign']/child::*//*/th[2]
+ 
+ L1_startDate = //li[@ng-if='showDates']/strong[1]
+ L1_endDate = //li[@ng-if='showDates']/strong[2]
+ L1_startend = //li[@ng-if='showDates']
+ 
+ L1_exportPDF_button = //li[@ng-click='exportToPDF()']
+ L1_mailTo_button = //li[@ng-click='mailTO()']
+ L1_dashboard_button = //li[@id='saveWidgetListItem']
+ L1_reload_button = //li[@ng-click='showDefaultWidgets()']
+ 
+ dash_mail_recepient = //*[@id='emailField' and @placeholder='Recipient']
+ dash_mail_subject = //*[@placeholder='Subject']
+ dash_mail_message = //*[@placeholder='Message']
+ dash_mail_send = //*[@value='Send' and @id='user_btn']
+ dash_widget_submitButton = //input[@id='submittoshowButton']
+ 

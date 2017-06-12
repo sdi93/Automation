@@ -28,7 +28,7 @@ public class EUP_Logout
 	
 	public void logout(String after) throws Exception
 	{
-		//rep.report.startTest("Log-Out after"+after);
+		rep.logger = rep.report.startTest("Log-Out after "+after);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		try
@@ -43,7 +43,7 @@ public class EUP_Logout
 		catch(Exception e)
 		{
 			System.out.println(e);
-			rep.report_status_fail("logout", "Logout not completed succssfully");
+			rep.report_status_fail("failed_logout", "Logout not completed succssfully");
 		
 		}
 	

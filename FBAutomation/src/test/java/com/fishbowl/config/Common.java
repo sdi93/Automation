@@ -28,7 +28,7 @@ public class Common
 	public void login() throws Exception 
 	{
 		
-		ReadExcelUtils.setExcelFile("D:/gitcode/SelAutomation/FBAutomation/Data/CampaignData.xlsx", "Credentials");
+		ReadExcelUtils.setExcelFile("/FishboelGitCode/FBAutomation/Data/CampaignData.xlsx", "Credentials");
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();

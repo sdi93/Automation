@@ -1,0 +1,10 @@
+ loginUser = //input[@id='login' and @placeholder='Username']
+ password = //input[@id='login' and @placeholder='Username']
+ loginButton = //*[@class='x-pad']/child::*/*[@value='Login']
+ 
+ L1_allbrand = //div[@empty-text='All Brands']/child::*/*[@ng-bind-html='varButtonLabel']
+ L1_brandText = //div[@class='acol']/child::*/*[@class='ng-binding']
+ L1_storepath = //div[@empty-text='All Stores']
+ L1_storelist = //div[@empty-text='All Stores']/child::*//*/*[@class='checkBoxContainer']/child::*//*//*/span[@class='ng-binding']
+ 
+ backButton = //img[@class='x-icon h24e bgs2000p backs']

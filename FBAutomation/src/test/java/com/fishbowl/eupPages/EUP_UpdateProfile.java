@@ -27,7 +27,7 @@ public class EUP_UpdateProfile
 	
 	public void userProfileUpdate()throws Exception
 	{
-		//logger=report.startTest("UserProfile Update");
+		rep.logger= rep.report.startTest("UserProfile Update");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		try
@@ -52,13 +52,13 @@ public class EUP_UpdateProfile
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj1.get_dialog_okButton())));
 			driver.findElement(By.xpath(obj1.get_dialog_okButton())).click();
 			Thread.sleep(2000);
-			//logger.log(LogStatus.PASS, "USer profile updated  succesfully");
+			rep.report_status_pass("USer profile updated  succesfully");
 
 		}
 		catch(Exception e)
 		{
 			System.out.println(e);
-			//   logger.log(LogStatus.FAIL, "User proile updatin not complete",image);
+			rep.report_status_fail("failed_updateProf", "User proile updatin not complete");
 	
 		}
 		

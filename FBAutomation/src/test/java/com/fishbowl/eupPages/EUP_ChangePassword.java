@@ -31,7 +31,7 @@ public class EUP_ChangePassword
 	
 	public void updatePassword()throws Exception
 	{
-		//logger=report.startTest("Change Password");
+		rep.logger=rep.report.startTest("Change Password");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		try
@@ -57,12 +57,12 @@ public class EUP_ChangePassword
 			driver.findElement(By.xpath(obj1.get_success_dialog()));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj1.get_dialog_okButton())));
 			driver.findElement(By.xpath(obj1.get_dialog_okButton())).click();
-			//logger.log(LogStatus.PASS, "Password update Complete");
+			rep.report_status_pass("Password update Complete");
 		}
 		catch(Exception e)
 		{
 			 System.out.println(e);
-			  // logger.log(LogStatus.FAIL, "Password  not changed succssfully",image);
+			  rep.report_status_fail("failed_updatePass", "Password  not changed successfully");
 		}
 	}
 	

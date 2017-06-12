@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeSuite;
 import com.fishbowl.utility.ReadExcelUtils;
+import com.fishbowl.utility.Reporting;
 
 public class EUP_Common {
 
@@ -21,6 +22,7 @@ public static String fileName = "EUP_Data.xlsx";
 public static String testSheet = "Registration";
 public static String fname,lname,phone,email,password,birthdate,zipcode,address,city,oldEmail,url,newEmail;
 public static String newPass = "password123";
+Reporting rep = new Reporting();
 
 	@BeforeSuite
 	public void endUserPortal() throws Exception 
@@ -55,7 +57,7 @@ public static String newPass = "password123";
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(url);
-		
+		rep.reportINitialise("EUPReport");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.MINUTES);
 		
 		EUP_Locators obj1 = new EUP_Locators();
@@ -63,4 +65,10 @@ public static String newPass = "password123";
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj1.get_signup())));
 		driver.findElement(By.xpath(obj1.get_signup())).click();
 	   }
+	
+	 @org.testng.annotations.AfterSuite
+		public void quit() {
+		 driver.close();
+			driver.quit();
+		}
 }

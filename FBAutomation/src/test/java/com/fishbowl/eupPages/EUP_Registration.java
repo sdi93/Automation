@@ -22,11 +22,11 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class EUP_Registration 
 {
-	WebDriver driver;
-	EUP_Locators obj1 = new EUP_Locators();
-	EUP_Common eupCommon=new EUP_Common();
+	public static WebDriver driver;
+	public static EUP_Locators obj1 = new EUP_Locators();
+	public static EUP_Common eupCommon=new EUP_Common();
 	Reporting rep = new Reporting();
-	public int emailIndexCount=0,mobileIndexCount=0;
+	public static int emailIndexCount=0,mobileIndexCount=0;
 	
 	public EUP_Registration(WebDriver ldriver)
 	{
@@ -35,7 +35,7 @@ public class EUP_Registration
 	
 	public void signUpForm()throws Exception
 	{
-		//logger=report.startTest("Registration Page");
+		rep.logger=rep.report.startTest("Registration Page");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		try
@@ -64,8 +64,9 @@ public class EUP_Registration
 									 
 					else if(StringUtils.containsIgnoreCase(text, "Mobile Phone"))
 					{
+						mobileIndexCount = i;
 						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div/div[2]/input")).clear();
-						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div/div[2]/input")).sendKeys(String.valueOf(eupCommon.phone));//textBox
+						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div/div[2]/input")).sendKeys(String.valueOf("999-417-3235"));//textBox
 					}
 					else if(StringUtils.containsIgnoreCase(text, "Birth Date"))
 					{
@@ -124,6 +125,11 @@ public class EUP_Registration
 						wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/child::*//select/option[3]")));
 						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/child::*//select/option[3]")).click();
 					}
+					else 
+					{
+						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div[1]/div[2]/input")).clear();
+						driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+i+"]/div/div[2]/input")).sendKeys(eupCommon.address);//textBox
+					}
 				}
 				else{
 					System.out.println("asd");}
@@ -139,17 +145,27 @@ public class EUP_Registration
 				String em=	driver.findElement(By.xpath("//p[@class='ng-binding']")).getText();
 				if(em.equalsIgnoreCase("Email already exists"))
 				{
-					driver.findElement(By.xpath("//button[@aria-hidden='false']")).click();
-					Thread.sleep(3000);
-					driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[1]/div[2]/input")).clear();
-					
-					driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[1]/div[2]/input")).sendKeys(eupCommon.newEmail);//textBox
-					driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[2]/div[2]/input")).clear();
-					driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[2]/div[2]/input")).sendKeys(eupCommon.newEmail);//textbox of conirm
-					ReadExcelUtils.writeExcel(eupCommon.filePath, eupCommon.fileName, eupCommon.testSheet,1,5,eupCommon.newEmail);
-					//ext number 999-417-3235  Phone number already exists
+					extEmail();
 				}
-				driver.findElement(By.xpath("//input[@type='submit' and @value='SUBMIT']")).click();
+				else if(em.equalsIgnoreCase("Phone number already exists"))
+				{
+					extPhone();
+				}
+				
+			}
+			
+			if( wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Please fill out')]"))).isDisplayed()  )
+			{
+				String em=	driver.findElement(By.xpath("//p[@class='ng-binding']")).getText();
+				 if(em.equalsIgnoreCase("Phone number already exists"))
+				{
+					extPhone();
+				}
+				 else if(em.equalsIgnoreCase("Email already exists"))
+				{
+					extEmail();
+				}
+				
 			}
 			
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myNavbar']/ul/li[1]/a")));
@@ -169,5 +185,27 @@ public class EUP_Registration
 
 	}
 	
+	public  void extEmail()throws Exception
+	{
+		driver.findElement(By.xpath("//button[@aria-hidden='false']")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[1]/div[2]/input")).clear();
+		
+		driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[1]/div[2]/input")).sendKeys(eupCommon.newEmail);//textBox
+		driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[2]/div[2]/input")).clear();
+		driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+emailIndexCount+"]/div[2]/div[2]/input")).sendKeys(eupCommon.newEmail);//textbox of conirm
+		ReadExcelUtils.writeExcel(eupCommon.filePath, eupCommon.fileName, eupCommon.testSheet,1,5,eupCommon.newEmail);
+		driver.findElement(By.xpath("//input[@type='submit' and @value='SUBMIT']")).click();
+		//ext number 999-417-3235  Phone number already exists
+	}
+	
+	public void extPhone()throws Exception
+	{
+		driver.findElement(By.xpath("//button[@aria-hidden='false']")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+mobileIndexCount+"]/div/div[2]/input")).clear();
+		driver.findElement(By.xpath("//div[@class='ng-scope row-mt10']/div["+mobileIndexCount+"]/div/div[2]/input")).sendKeys(String.valueOf(eupCommon.phone));//textBox
+		driver.findElement(By.xpath("//input[@type='submit' and @value='SUBMIT']")).click();
+	}
 	
 }

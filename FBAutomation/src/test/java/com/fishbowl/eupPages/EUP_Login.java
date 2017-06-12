@@ -27,7 +27,7 @@ public class EUP_Login
 	}
 	public void login(String condition)throws Exception
 	{
-		//logger=report.startTest("Log-In with Registered User");
+		rep.logger= rep.report.startTest("Log-In with Registered User");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		try
@@ -45,13 +45,14 @@ public class EUP_Login
 			}
 			
 			driver.findElement(By.xpath("//input[@value='Sign in']")).click();
-			//logger.log(LogStatus.PASS, "Login Successfull");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(obj1.get_profile_navTab())));
+			Thread.sleep(3000);
+			rep.report_status_pass("Login Successfull");
 		}
 		catch(Exception e)
 		{
 			System.out.println(e);
-			//rep.logger.log(LogStatus.FAIL, "not able to Login",image);
-		
+			rep.report_status_fail("failed_login", "not able to Login");
 		}
 	
 	}
